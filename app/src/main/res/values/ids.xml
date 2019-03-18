@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--<item name="TextView_2" type="id">textView_2</item>-->
+    <!--<item name="TextView_3" type="id">textView_3</item>-->
+<item name="TextView_1" type="id"/>
+    <!--<item name="EditText_1" type="id">editText_1</item>-->
+    <!--<item name="EditText_2" type="id">editText_2</item>-->
+    <!--<item name="EditText_3" type="id">editText_3</item>-->
+    <!--<item name="EditText_4" type="id">editText_4</item>-->
+    <!--<item name="EditText_5" type="id">editText_5</item>-->
+    <!--<item name="EditText_6" type="id">editText_6</item>-->
+
+    <item name="line_1" type="id"/>
+    <!--<item name="line_2" type="id">line_2</item>-->
+    <!--<item name="line_3" type="id">line_3</item>-->
+
+
+
+</resources>

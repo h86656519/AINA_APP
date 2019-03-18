@@ -1,0 +1,60 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+
+    </style>
+
+    <style name="Base.Widget.Design.TabLayout" parent="android:Widget">
+        <item name="tabBackground">@drawable/tab_background</item>
+        <item name="tabIndicatorColor">@color/maincolor</item>
+
+    </style>
+
+    <style name="spinner_style" parent="android:Widget.Spinner">
+        <item name="android:background">@drawable/spinner_raow_selector</item>
+        <item name="android:dividerHeight">1dp</item>
+        <item name="android:divider">@color/maincolor</item>
+        <item name="android:spinnerMode">dialog</item>
+        <!--<item name="android:subMenuArrow">@drawable/icon_arrow_down_pink</item>-->
+
+
+    </style>
+
+    <style name="spinner_style1" parent="android:Widget.ListView.DropDown">
+        <item name="android:background">@drawable/spinner_round1</item>
+        <item name="android:dividerHeight">1dp</item>
+        <item name="android:divider">@color/maincolor</item>
+        <item name="android:textColor">@color/default_text_color</item>
+    </style>
+
+    <declare-styleable name="RatioImageView">
+        <!--宽度是否根据src图片的比例来测量（高度已知）-->
+        <attr name="is_width_fix_drawable_size_ratio" format="boolean" />
+        <!--高度是否根据src图片的比例来测量（宽度已知）-->
+        <attr name="is_height_fix_drawable_size_ratio" format="boolean" />
+
+        <!-- 高度设置，参考宽度，如0.5 , 表示 高度＝宽度×０.5 -->
+        <attr name="height_to_width_ratio" format="float" />
+        <!-- 宽度设置，参考高度，如0.5 , 表示 宽度＝高度×０.5 -->
+        <attr name="width_to_height_ratio" format="float" />
+    </declare-styleable>
+
+    <style name="MyEditText" parent="Theme.AppCompat.Light">
+        <item name="colorControlNormal">@color/colorPrimary</item>
+        <item name="colorControlActivated">@android:color/holo_orange_dark</item>
+    </style>
+
+    <declare-styleable name="MyImageViewRatio">
+        <attr name="ratio" format="float"/>
+        <attr name="angle" format="integer"/>
+        <attr name="isCircle" format="boolean"/>
+    </declare-styleable>
+
+
+
+</resources>

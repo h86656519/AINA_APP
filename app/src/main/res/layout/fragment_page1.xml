@@ -1,0 +1,373 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/frag1_toolbar"
+        layout="@layout/toolbar_main" />
+
+    <android.support.design.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <!--不能拖曳移動版-->
+        <!--<android.support.design.widget.FloatingActionButton-->
+        <!--android:id="@+id/customer_fab"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_gravity="bottom|end"-->
+        <!--android:layout_margin="16dp"-->
+        <!--android:scaleType="center"-->
+        <!--android:src="@drawable/icon_custom_service"-->
+        <!--app:backgroundTint="@android:color/transparent"-->
+        <!--app:borderWidth="0dp"-->
+        <!--app:elevation="0.01dp"-->
+        <!--app:pressedTranslationZ="20dp"-->
+        <!--app:maxImageSize="56dp"-->
+        <!--/>-->
+
+        <com.example.user.aina_app.common.MovableFloatingActionButton
+            android:id="@+id/customer_fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="16dp"
+            android:scaleType="center"
+            android:src="@drawable/icon_custom_service"
+            app:backgroundTint="@android:color/transparent"
+            app:borderWidth="0dp"
+            app:elevation="0.01dp"
+            app:maxImageSize="56dp"
+            app:pressedTranslationZ="20dp" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <!--<com.takusemba.multisnaprecyclerview.MultiSnapRecyclerView-->
+                <!--android:id="@+id/image_recycler_view"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="200dp"-->
+                <!--android:layout_gravity="top"-->
+                <!--app:msrv_gravity="start"-->
+                <!--app:msrv_ms_per_inch="@dimen/normal_speed"-->
+                <!--app:msrv_snap_count="1" />-->
+
+                <com.youth.banner.Banner
+                    android:id="@+id/ad_banner1"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:layout_gravity="top"
+                    app:image_scale_type="center_crop" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/topIcon_recyclerview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp" />
+
+                <com.youth.banner.Banner
+                    android:id="@+id/ad_banner2"
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:layout_gravity="top"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    app:image_scale_type="center_crop" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="2dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="0dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginBottom="0dp"
+                        android:background="@drawable/healthtitle_rounde"
+                        android:paddingTop="0dp"
+                        android:paddingBottom="0dp"
+                        android:text="健康頭條  "
+                        android:textColor="@color/contents_text"
+                        android:textSize="15dp" />
+
+                    <com.superluo.textbannerlibrary.TextBannerView
+                        android:id="@+id/tv_banner"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:paddingLeft="2dp"
+                        app:setDirection="bottom_to_top"
+                        app:setGravity="left"
+                        app:setSingleLine="true"
+                        app:setTextColor="@color/contents_text"
+                        app:setTextSize="15dp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:layout_weight="1"
+                        android:text="@string/tab1"
+                        android:textColor="@color/maincolor"
+                        android:textSize="17dp" />
+
+                    <TextView
+                        android:id="@+id/specialDiscount_more"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="8dp"
+                        android:layout_weight="1"
+                        android:drawableRight="@drawable/icon_arrow_double"
+                        android:gravity="right"
+                        android:onClick="onclick"
+                        android:text="@string/tab_more"
+                        android:textColor="@color/maincolor"
+                        android:textSize="17dp" />
+
+                </LinearLayout>
+
+
+                <com.takusemba.multisnaprecyclerview.MultiSnapRecyclerView
+                    android:id="@+id/specialDiscount_recyclerview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:msrv_gravity="center"
+                    app:msrv_ms_per_inch="@dimen/normal_speed"
+                    app:msrv_snap_count="1" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:layout_weight="1"
+                        android:text="@string/tab2"
+                        android:textColor="@color/maincolor"
+                        android:textSize="17dp" />
+
+                    <TextView
+                        android:id="@+id/healthRecommend_more"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="8dp"
+                        android:layout_weight="1"
+                        android:drawableRight="@drawable/icon_arrow_double"
+                        android:gravity="right"
+                        android:text="@string/tab_more"
+                        android:textColor="@color/maincolor"
+                        android:textSize="17dp" />
+
+                </LinearLayout>
+
+                <com.takusemba.multisnaprecyclerview.MultiSnapRecyclerView
+                    android:id="@+id/healthRecommend_recyclerview"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    app:msrv_gravity="center"
+                    app:msrv_ms_per_inch="@dimen/normal_speed"
+                    app:msrv_snap_count="1" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:layout_weight="1"
+                        android:text="@string/tab3"
+                        android:textColor="@color/maincolor"
+                        android:textSize="17dp" />
+
+                    <TextView
+                        android:id="@+id/oldManHealth_more"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="8dp"
+                        android:layout_weight="1"
+                        android:drawableRight="@drawable/icon_arrow_double"
+                        android:gravity="right"
+                        android:text="@string/tab_more"
+                        android:textColor="@color/maincolor"
+                        android:textSize="17dp" />
+                </LinearLayout>
+
+                <com.takusemba.multisnaprecyclerview.MultiSnapRecyclerView
+                    android:id="@+id/oldManHealth_recyclerview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:msrv_gravity="center"
+                    app:msrv_ms_per_inch="@dimen/normal_speed"
+                    app:msrv_snap_count="1" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:layout_weight="1"
+                        android:text="@string/tab4"
+                        android:textColor="@color/maincolor"
+                        android:textSize="17dp" />
+
+                    <TextView
+                        android:id="@+id/woman_more"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="8dp"
+                        android:layout_weight="1"
+                        android:drawableRight="@drawable/icon_arrow_double"
+                        android:gravity="right"
+                        android:text="@string/tab_more"
+                        android:textColor="@color/maincolor"
+                        android:textSize="17dp" />
+                </LinearLayout>
+
+                <com.takusemba.multisnaprecyclerview.MultiSnapRecyclerView
+                    android:id="@+id/woman_recyclerview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:msrv_gravity="center"
+                    app:msrv_ms_per_inch="@dimen/normal_speed"
+                    app:msrv_snap_count="1" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:layout_weight="1"
+                        android:text="@string/tab5"
+                        android:textColor="@color/maincolor"
+                        android:textSize="17dp" />
+
+                    <TextView
+                        android:id="@+id/baby_more"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="8dp"
+                        android:layout_weight="1"
+                        android:drawableRight="@drawable/icon_arrow_double"
+                        android:gravity="right"
+                        android:text="@string/tab_more"
+                        android:textColor="@color/maincolor"
+                        android:textSize="17dp" />
+                </LinearLayout>
+
+                <com.takusemba.multisnaprecyclerview.MultiSnapRecyclerView
+                    android:id="@+id/baby_recyclerview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:msrv_gravity="center"
+                    app:msrv_ms_per_inch="@dimen/normal_speed"
+                    app:msrv_snap_count="1" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:layout_weight="1"
+                        android:text="@string/tab6"
+                        android:textColor="@color/maincolor"
+                        android:textSize="17dp" />
+
+                    <TextView
+                        android:id="@+id/man_more"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="8dp"
+                        android:layout_weight="1"
+                        android:drawableRight="@drawable/icon_arrow_double"
+                        android:gravity="right"
+                        android:text="@string/tab_more"
+                        android:textColor="@color/maincolor"
+                        android:textSize="17dp" />
+                </LinearLayout>
+
+                <com.takusemba.multisnaprecyclerview.MultiSnapRecyclerView
+                    android:id="@+id/man_recyclerview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:msrv_gravity="center"
+                    app:msrv_ms_per_inch="@dimen/normal_speed"
+                    app:msrv_snap_count="1" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:layout_weight="1"
+                        android:text="@string/tab7"
+                        android:textColor="@color/maincolor"
+                        android:textSize="17dp" />
+
+                    <TextView
+                        android:id="@+id/healthfood_more"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="8dp"
+                        android:layout_weight="1"
+                        android:drawableRight="@drawable/icon_arrow_double"
+                        android:gravity="right"
+                        android:text="@string/tab_more"
+                        android:textColor="@color/maincolor"
+                        android:textSize="17dp" />
+                </LinearLayout>
+
+                <com.takusemba.multisnaprecyclerview.MultiSnapRecyclerView
+                    android:id="@+id/healthfood_recyclerview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:msrv_gravity="center"
+                    app:msrv_ms_per_inch="@dimen/normal_speed"
+                    app:msrv_snap_count="1" />
+
+            </LinearLayout>
+        </ScrollView>
+    </android.support.design.widget.CoordinatorLayout>
+
+
+</LinearLayout>
+
+

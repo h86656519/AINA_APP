@@ -1,0 +1,237 @@
+<resources>
+    <string name="app_name">AINA</string>
+    <string name="AINA">AINA</string>
+    <string name="ExclusivelySold">獨家</string>
+    <string name="Verfity">驗證</string>
+
+    <string name="VerfityDescription">將商品靠近手機，即可自動感應</string>
+    <string name="Message">消息</string>
+    <string name="my">我的</string>
+    <string name="search_menu">搜尋</string>
+    <string name="nav_open_drewer">open navigation drawer</string>
+    <string name="nav_close_drewer">close navigation drawer</string>
+    <string name="vertifyproduct">驗證商品</string>
+    <string name="entertop">進入首頁</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="common_response_9999">連線發生錯誤，請重新在試</string>
+    <string name="common_response_1000">回覆資訊處理失敗，請重新在試</string>
+    <string name="common_response_1002">儲存資訊讀取失敗，請重新在試</string>
+    <string name="common_response_1003">儲存檔案發生失敗，請重新在試</string>
+    <string name="common_response_1004">儲存檔案發生失敗，儲存空間不足</string>
+    <string name="common_response_9998">無網路連線，請檢查連線設定</string>
+    <string name="msg_default_status">將條碼放置于鏡頭範圍內進行掃描。  </string>
+    <string name="common_button_add">新增</string>
+    <string name="common_button_confirm">確定</string>
+    <string name="common_button_back">返回</string>
+    <string name="common_button_prePage">上一頁</string>
+    <string name="common_button_save">儲存</string>
+    <string name="common_button_cancel">取消</string>
+    <string name="common_button_use">使用說明</string>
+    <string name="common_button_forget">忘記密碼</string>
+    <string name="common_button_login">登入</string>
+    <string name="common_button_logout">登出</string>
+    <string name="common_button_setup">設定</string>
+    <string name="common_button_shopCart">購物車</string>
+    <string name="common_button_shortList">快速選單</string>
+    <string name="common_button_category">目錄</string>
+    <string name="common_button_register">註冊新帳號</string>
+    <string name="common_input_error">尚未輸入所有*號項目</string>
+    <string name="common_input_errorDesc">尚未輸入</string>
+    <string name="business_action_submit">送出</string>
+    <string name="business_verify_message1">維骨力只有一種，買對才有效</string>
+    <string name="business_verify_message2">恭喜！本產品確認為-原廠維骨力膠囊/粉劑真品，感謝您的購買，並請安心使用！</string>
+    <string name="business_verify_message3">警告！本產品無法通過晶片防偽辨識系統，請您切勿使用！</string>
+    <string name="business_verify_message4">本產品確認為-原廠</string>
+    <string name="business_verify_message5">真品，感謝您的購買，並請安心使用！</string>
+    <string name="business_verify_message6">本產品</string>
+    <string name="business_verify_message7">無法通過</string>
+    <string name="business_verify_message8">晶片防偽辨識系統，請您切勿使用！</string>
+    <string name="business_verify_message9"> 驗證失敗。\n此產品未經認證。</string>
+    <string name="business_verify_message10">將商品靠近手機，即可自動感應 </string>
+    <string name="business_verify_message11">驗證成功，\n此產品為本公司認證產品，請安心食用 </string>
+    <string name="business_verify_message12">請問是否進入產品頁面 </string>
+    <string name="business_verify_message13">請問是否需要幫助 ?</string>
+    <string name="business_product_message">維骨力膠囊/粉劑</string>
+    <string name="business_action_delete">刪除</string>
+    <string name="register_action_submit">註冊</string>
+    <string name="webconnect_error">網頁載入失敗，請檢查連線設定</string>
+    <string name="business_common_dataTitle">處理進度</string>
+    <string name="business_common_verify">產品驗證</string>
+    <string name="business_common_productInfo">產品介紹</string>
+    <string name="business_common_productUse">產品使用</string>
+    <string name="business_common_verifyResult">驗證結果</string>
+    <string name="business_common_dataProcess">資料處理中........請稍候</string>
+    <string name="business_common_dataDownLoad">資料下載中........請稍候</string>
+    <string name="business_common_webLoading">網頁載入中........請稍候</string>
+    <string name="business_common_error">錯誤</string>
+    <string name="business_common_message">訊息</string>
+    <string name="business_nfc_disable">尚未開啟NFC無法進行驗證，請前往設定啟用NFC</string>
+    <string name="business_common_morePage">瀏覽更多資料</string>
+    <string name="business_message_verifySuccess">驗證成功</string>
+    <string name="business_use_message1">維骨力建議服用法:</string>
+    <string name="business_use_message2">維骨力膠囊(Viartril-S Capsules 500粒/180粒/80粒裝)</string>
+    <string name="business_use_message3">治療劑量:每次2粒膠囊，三餐飯前約15分鐘以水吞服。</string>
+    <string name="business_use_product1">膠囊</string>
+    <string name="business_use_product2">粉劑</string>
+    <string name="product_verify">商品驗證</string>
+
+    <string name="yes">確定</string>
+    <string name="no">取消</string>
+    <string name="main_notify_message">將手機接近包裝瓶口驗證是否為正廠維骨力商品</string>
+    <string name="label_name_verifyProduct">維骨力-防偽驗證</string>
+    <string name="business_action_mobileWeb">行動首頁</string>
+    <string name="searchview_defaultQueryHint">搜索全部商品</string>
+
+    <string name="tab1">超值秒殺</string>
+    <string name="tab2">健康推薦</string>
+    <string name="tab3">銀髮族保健</string>
+    <string name="tab4">女性護理</string>
+    <string name="tab5">嬰幼兒保健</string>
+    <string name="tab6">男性中心</string>
+    <string name="tab7">一般保健食品</string>
+    <string name="tab_more">看更多</string>
+
+    <string name="top_icon1">全部分類</string>
+    <string name="top_icon2">產品驗證</string>
+    <string name="top_icon3">月月好朋友</string>
+    <string name="top_icon4">每日簽到</string>
+    <string name="top_icon5">活動驗證</string>
+    <string name="top_icon6">健康紀錄</string>
+    <string name="top_icon7">藥師諮詢</string>
+    <string name="top_icon8">查看物流</string>
+
+    <string name="specialproductname">醫立妥乳膏</string>
+    <string name="specialproductname_det">醫立妥乳膏1% \nELIDEL CREAM 1% /TUBE \n(10或15公克)</string>
+
+    <string name="shoppingCart">購物車</string>
+    <string name="shoppingCartDetail">購物車明細</string>
+    <string name="checkDetail">查看追蹤清單</string>
+    <string name="totalprice">總計 : \n總價 : </string>
+    <string name="continueShopping">繼續購買</string>
+    <string name="shoppingComfirm">確認購買</string>
+
+    <string name="orderDetail">訂單詳情</string>
+    <string name="delivery">寄送方式</string>
+    <string name="delivery_market">超商取貨</string>
+    <string name="delivery_home">快速到貨宅配</string>
+
+    <string name="elecInvoice">電子發票</string>
+    <string name="elecInvoice_Item1">會員載具</string>
+
+    <string name="donationInvoice">發票捐贈</string>
+    <string name="donationInvoice_Item1">財團法人創世社會福利基金會</string>
+    <string name="donationInvoice_Item2">社團法人台灣一起夢想公益協會</string>
+    <string name="donationInvoice_Item3">社團法人世界和平協會</string>
+
+    <string name="tripUniformInvoice">發票捐贈</string>
+    <string name="tripUniformInvoice_hint1">請填寫統一編號</string>
+    <string name="tripUniformInvoice_hint2">請填請填寫發票抬頭(非必填)</string>
+    <string name="tripUniformInvoice_hint3">請填請填寫發票發票收件人</string>
+    <string name="tripUniformInvoice_hint4">請填請填寫道路名稱</string>
+    <string name="tripUniformInvoice_radiobbutton">本次資料加入紀錄</string>
+    <string name="tripUniformInvoice_button">從統編紀錄本填入</string>
+    <string name="cityspinner">請選擇縣市</string>
+    <string name="countrysidespinner">請選擇鄉鎮市區</string>
+
+    <!--<array name="district">-->
+    <!--<item>請選擇鄉鎮市區</item>-->
+    <!--<item>100 中正區</item>-->
+    <!--<item>103 大同區</item>-->
+    <!--<item>104 中山區</item>-->
+    <!--<item>105 松山區</item>-->
+    <!--<item>106 大安區</item>-->
+    <!--<item>108 萬華區</item>-->
+    <!--<item>110 信義區</item>-->
+    <!--<item>111 士林區</item>-->
+    <!--<item>112 北投區</item>-->
+    <!--<item>114 內湖區</item>-->
+    <!--<item>115 南港區</item>-->
+    <!--<item>116 文山區</item>-->
+    <!--</array>-->
+    <!--<array name="city">-->
+    <!--<item>"請選擇縣市"</item>-->
+    <!--<item>台北市</item>-->
+    <!--<item>台北市</item>-->
+    <!--</array>-->
+    <string name="payment">付款方式</string>
+    <string name="byCreditcard">使用信用卡</string>
+    <string name="creditcard">新增或選擇信用卡</string>
+    <string name="addcreditcard">新增信用卡</string>
+    <string name="creditcarddetail">信用卡資料</string>
+    <string name="ainaPoint">使用AINA點數</string>
+    <string name="addcreditnbr">請輸入卡號</string>
+    <string name="expire">有效期限</string>
+    <string name="expire_month">有效月份</string>
+    <string name="expire_year">有效年分</string>
+    <string name="creditOwner">請輸入持卡人姓名</string>
+
+
+    <string name="useCoupon">使用折價劵</string>
+    <string name="couponSelection">選擇折價劵</string>
+    <string name="couponDetail">折價劵資料</string>
+    <string name="coupon_1">折價劵 1 </string>
+    <string name="coupon_2">折價劵 2 </string>
+    <string name="finish">完成</string>
+
+
+    <string name="orderAmount">訂單金額</string>
+    <string name="goodAmount">商品總金額</string>
+    <string name="delieverAmount">運費總金額</string>
+    <string name="paymentAmount">總付款金額</string>
+    <string name="submitOrder">下訂單</string>
+
+    <string name="delieverByMarket">選擇超商</string>
+    <string name="supermarket1">全家便利商店</string>
+    <string name="supermarket2">7-11便利商店</string>
+    <string name="buyer">購買者資料</string>
+    <string name="buyerName">請輸入你的中文姓名</string>
+    <string name="buyerID">請輸入你的身分證字號</string>
+    <string name="buyerPhonenumber">請填寫你的連絡電話</string>
+    <string name="buyerEmail">請填寫你的電子信箱</string>
+    <string name="warning">此欄位為必填欄位</string>
+    <string name="goodDetail">季節轉變就病倒？經常容易不適？ 認識免疫系統，以
+天然營養提升免疫力。季節轉變就病倒？經常容易不
+適？認識免疫系統，以天然營養提升免疫力。季節轉
+變就病倒？經常容易不適？認識免疫系統，以天然營
+養提升免疫力。季節轉變就病倒？經常容易不適？認
+識免疫系統，以天然營養提升免疫力。季節轉變就病
+倒？經常容易不適？認識免疫系統，以天然營養提升
+免疫力。季節轉變就病倒？經常容易不適？認識免疫
+系統，以天然營養提升免疫力。季節轉
+
+變就病倒？經常容易不適？認識免疫系統，以天然營
+養提升免疫力。季節轉變就病倒？經常容易不適？認
+識免疫系統，以天然營養提升免疫力。</string>
+
+    <string name="newReceiverAddress">新增寄送地址</string>
+    <string name="receiver_hint">請輸入收件人姓名</string>
+    <string name="phone_hint">請輸入行動電話或市話</string>
+    <string name="street_hint">請輸入道路名稱</string>
+    <string name="newAddress">新增地址</string>
+    <string name="newSelectAddress">新增/選擇地址</string>
+    <string name="address">地址資料</string>
+    <string name="mainConnection">主要聯絡方式</string>
+    <string name="receiverAddress">帳單地址</string>
+    <string name="importmenber">套用會員資料</string>
+
+    <string name="my_account">我的帳戶</string>
+    <string name="my_account_item1">按讚好物</string>
+    <string name="my_account_item2">瀏覽紀錄</string>
+    <string name="my_account_item3">邀請我的朋友</string>
+    <string name="my_account_item4">我的AINA點數</string>
+    <string name="my_account_item5">我的評價</string>
+    <string name="my_account_item6">我的優惠卷</string>
+    <string name="my_account_item7">幫助中心</string>
+
+    <string name="menstruation">月月好朋友</string>
+    <string name="calender">日曆</string>
+    <string name="record">紀錄</string>
+    <string name="setting">設置</string>
+    <string name="menstruation_end">經期結束</string>
+    <string name="menstruation_calander">編輯經期</string>
+
+
+</resources>

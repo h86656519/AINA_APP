@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--true 表示被按下時套用-->
+    <!--<item android:state_pressed="true"-->
+    <!--android:drawable="@android:drawable/btn_star" />-->
+    <!--true 表示被勾選時套用-->
+    <item android:drawable="@drawable/icon_check" android:state_checked="true" />
+    <item android:drawable="@drawable/icon_cross" android:state_checked="false" />
+    <!--預設值-->
+    <item android:drawable="@drawable/icon_cross" />
+
+
+
+</selector>

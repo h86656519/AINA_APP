@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".common.ElectInvoiceFragment">
+
+    <LinearLayout
+        android:id="@+id/elecInvoice_tab"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RadioButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="17dp"
+            android:layout_marginTop="5dp"
+            android:button="@drawable/radiobutton_background"
+            android:paddingLeft="8dp"
+            android:text="@string/delivery_market"
+            android:textColor="@color/contents_text" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
+            android:text="電子發票若中獎將寄送到購買者地址" />
+    </LinearLayout>
+</FrameLayout>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.TopActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!--<include-->
+            <!--android:id="@+id/toolbar"-->
+            <!--productvetifydetail_layout="@productvetifydetail_layout/toolbar_main" />-->
+
+        <com.example.user.aina_app.layout.VerticalViewPager
+            android:id="@+id/viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_above="@+id/navigation"
+            android:layout_weight="1" />
+
+        <android.support.design.widget.BottomNavigationView
+            android:id="@+id/navigation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:background="?android:attr/windowBackground"
+            app:itemIconTint="@drawable/bottom_nav_icon_color"
+            app:itemTextColor="@drawable/bottom_nav_text_color"
+            app:itemBackground="@drawable/item_background"
+            app:labelVisibilityMode="labeled"
+            app:menu="@menu/navigation" />
+    </LinearLayout>
+
+    <!--<android.support.design.widget.NavigationView-->
+        <!--android:id="@+id/nav_view"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_gravity="start"-->
+        <!--app:headerLayout="@productvetifydetail_layout/nav_header"-->
+        <!--android:showAsAction="always|withText"-->
+        <!--app:menu="@menu/menu_nav" />-->
+
+
+</android.support.v4.widget.DrawerLayout>

@@ -1,0 +1,71 @@
+<!--
+  ~ ===========================================================================
+  ~ QuMedia Confidential
+  ~
+  ~ (C) Copyright QuMedia Corp. 2010
+  ~ ===========================================================================
+  -->
+
+<resources>
+    <dimen name="listNormalTextSize">16dip</dimen>
+    <dimen name="listTitleSize">17dip</dimen>
+    <!--title 的要固定大 -->
+    <dimen name="titleButtonTextSize">16dip</dimen>
+    <dimen name="title4TextButtonW">90dip</dimen>
+    <dimen name="title3TextButtonW">80dip</dimen>
+    <dimen name="title2TextButtonW">70dip</dimen>
+    <dimen name="title6TextButtonW">130dip</dimen>
+    <dimen name="titleButtonH">55dip</dimen>
+    <dimen name="titleTextSize">32dip</dimen>
+    <dimen name="buttonTextSize">16sp</dimen>
+    <dimen name="formButtonTextSize">18dip</dimen>
+    <dimen name="editTextHeight">35dip</dimen>
+    <dimen name="editTextWidth">50dip</dimen>
+    <dimen name="formTextSize">16dip</dimen>
+    <dimen name="dip70pSize">70dip</dimen>
+    <dimen name="dip25Size">25dip</dimen>
+    <dimen name="dip100pSize">100dip</dimen>
+    <dimen name="dip30Size">30dip</dimen>
+    <!--左右移動亮點大小 15dip -->
+    <dimen name="ringWidth">20dip</dimen>
+    <!--左右移動亮點大小 15dip -->
+    <dimen name="littleRingWidth">15dip</dimen>
+    <!--左右移動Ancor大小 30dip -->
+    <dimen name="ancorWidth">32dip</dimen>
+    <dimen name="titleLittleTextSize">20dip</dimen>
+    <dimen name="titleSize">20dip</dimen>
+    <dimen name="bgPadding">35dip</dimen>
+    <dimen name="showTextSize">18sp</dimen>
+    <dimen name="showTitleSize">20dip</dimen>
+    <dimen name="text2ButtonW">60dip</dimen>
+    <dimen name="textButtonH">45dip</dimen>
+    <dimen name="text4ButtonW">120dip</dimen>
+    <dimen name="text5ButtonW">140dip</dimen>
+    <dimen name="text8ButtonW">200dip</dimen>
+    <dimen name="showImageSize">180dip</dimen>
+    <dimen name="bg2Width">65dip</dimen>
+    <dimen name="bg2TopBottom">60dip</dimen>
+    <dimen name="productAnchorPadding">40dip</dimen>
+    <dimen name="productShowMarginBottom">40dip</dimen>
+    <dimen name="productImageShowPadding">15dip</dimen>
+    <dimen name="showShelfImageSizeH">135dip</dimen>
+    <dimen name="showShelfImageSizeW">125dip</dimen>
+    <dimen name="showTypeSize">80dip</dimen>
+    <dimen name="showIconSize">100dip</dimen>
+    <dimen name="spinnerSize">50dip</dimen>
+    <dimen name="categoryHSize">40dip</dimen>
+    <dimen name="categoryWSize">100dip</dimen>
+    <dimen name="categoryTextSize">18dip</dimen>
+    <dimen name="backImageSize">60dip</dimen>
+    <dimen name="productBgShowSize">40dip</dimen>
+    <dimen name="productDetailTextSize">17dip</dimen>
+    <dimen name="bookTextSize">16dip</dimen>
+    <dimen name="shelfStyleImageWidth">100dip</dimen>
+    <dimen name="shelfStyleChoiceWidth">60dip</dimen>
+    <dimen name="shelfStyleTextSize">20dip</dimen>
+    <dimen name="imageViewBtnSize">60dip</dimen>
+    <dimen name="imageViewLayoutHeight">80dip</dimen>
+    <dimen name="tagTextSize">18dip</dimen>
+    <dimen name="tagLayoutHeight">100dip</dimen>
+    <dimen name="relativeLayoutPadding">5dp</dimen>
+</resources>

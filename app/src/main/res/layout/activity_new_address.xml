@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    tools:context=".activity.NewAddressActivity">
+
+    <include
+        android:id="@+id/addAddress_toolbar"
+        layout="@layout/toolbar" />
+
+    <EditText
+        android:id="@+id/receiver_editext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:autofillHints="AUTOFILL_HINT_CREDIT_CARD_NUMBER "
+        android:background="@drawable/button_rounde3"
+        android:imeOptions="actionSearch"
+        android:singleLine="true" />
+
+    <TextView
+        android:id="@+id/mainConnection_textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="4dp"
+        android:paddingLeft="20dp"
+        android:text="@string/mainConnection"
+        android:textSize="16dp" />
+
+    <EditText
+        android:id="@+id/phone_editext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:autofillHints="AUTOFILL_HINT_CREDIT_CARD_NUMBER "
+        android:background="@drawable/button_rounde3"
+        android:imeOptions="actionSearch"
+        android:singleLine="true" />
+
+    <TextView
+        android:id="@+id/receiverAddress_textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="4dp"
+        android:paddingLeft="20dp"
+        android:text="@string/receiverAddress"
+        android:textSize="16dp" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:orientation="horizontal">
+
+        <Spinner
+            android:id="@+id/city_spinner"
+            style="@style/spinner_style1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="4dp"
+            android:layout_weight="0.5"
+            android:spinnerMode="dialog" />
+
+        <Spinner
+            android:id="@+id/countryside_spinner"
+            style="@style/spinner_style1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="4dp"
+            android:layout_weight="0.5"
+            android:spinnerMode="dialog" />
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/street_editext"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/button_rounde3"
+        android:hint="@string/tripUniformInvoice_hint4"
+        android:imeOptions="actionSearch"
+        android:singleLine="true"
+        android:textSize="16dp" />
+
+    <Button
+        android:id="@+id/importmenber_button"
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/shoppingcart_round2"
+        android:text="@string/importmenber"
+        android:textColor="@color/maincolor" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        android:gravity="bottom">
+
+        <Button
+            android:id="@+id/finish_button"
+            android:onClick="onclick"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_rounde1"
+            android:text="@string/finish"
+            android:textColor="@color/white"
+            android:textSize="16dp" />
+    </LinearLayout>
+
+</LinearLayout>
