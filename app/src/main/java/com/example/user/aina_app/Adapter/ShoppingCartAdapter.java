@@ -30,6 +30,7 @@ public class ShoppingCartAdapter extends RecyclerView.Adapter<ShoppingCartAdapte
     private ArrayList<Integer> selectimage;
     private ArrayList<String> productPrice;
     private ArrayList<Integer> quantity_list = new ArrayList<Integer>();
+
     View view;
     ShoppingCartActivity mContext;
     //建立checkbox狀態，回傳用

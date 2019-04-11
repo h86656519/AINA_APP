@@ -46,27 +46,33 @@ public class ShoppingCartActivity extends AppCompatActivity {
 
         initView();
 
-        selectImage.add(R.drawable.product);
-        selectImage.add(R.drawable.product);
-        selectImage.add(R.drawable.product);
-        selectImage.add(R.drawable.product);
-        selectImage.add(R.drawable.product);
-        selectImage.add(R.drawable.product);
+//        selectImage.add(R.drawable.product);
+//        selectImage.add(R.drawable.product);
+//        selectImage.add(R.drawable.product);
+//        selectImage.add(R.drawable.product);
+//        selectImage.add(R.drawable.product);
+//        selectImage.add(R.drawable.product);
 
-        selectProductname.add(getResources().getString(R.string.specialproductname_det));
-        selectProductname.add(getResources().getString(R.string.specialproductname_det));
-        selectProductname.add(getResources().getString(R.string.specialproductname_det));
-        selectProductname.add(getResources().getString(R.string.specialproductname_det));
-        selectProductname.add(getResources().getString(R.string.specialproductname_det));
-        selectProductname.add(getResources().getString(R.string.specialproductname_det));
+//        selectProductname.add(getResources().getString(R.string.specialproductname_det));
+//        selectProductname.add(getResources().getString(R.string.specialproductname_det));
+//        selectProductname.add(getResources().getString(R.string.specialproductname_det));
+//        selectProductname.add(getResources().getString(R.string.specialproductname_det));
+//        selectProductname.add(getResources().getString(R.string.specialproductname_det));
+//        selectProductname.add(getResources().getString(R.string.specialproductname_det));
 
-        productPrice.add("1000");
-        productPrice.add("1100");
-        productPrice.add("1200");
-        productPrice.add("1300");
-        productPrice.add("1400");
-        productPrice.add("1500");
-
+//        productPrice.add("1000");
+//        productPrice.add("1100");
+//        productPrice.add("1200");
+//        productPrice.add("1300");
+//        productPrice.add("1400");
+//        productPrice.add("1500");
+        for (int i = 0; i < 6; i++) {
+            Goods goods = new Goods();
+            goods.setGoodImage(R.drawable.product);
+            goods.setGoodName(getResources().getString(R.string.specialproductname_det));
+            goods.setGoodPrice(1000 + i*100);
+            goods.setGoodQuantity(0);
+        }
         shoppingCartAdapter = new ShoppingCartAdapter(mContext, selectProductname, selectImage, productPrice);
         shoppingCartRecyclerView = (RecyclerView) findViewById(R.id.shoppingcart_recycleview);
 //        MultiSnapRecyclerView shoppingCartRecyclerView = (MultiSnapRecyclerView) findViewById(R.id.shoppingcart_recycleview);
@@ -145,7 +151,7 @@ public class ShoppingCartActivity extends AppCompatActivity {
                 if (finalprice == 0) {
                     Toast.makeText(ShoppingCartActivity.this, "請至少勾選一項商品 ", Toast.LENGTH_SHORT).show();
                 } else {
-                   // Log.i(TAG, "pickUpImageeeeeeeeeeee" + pickUpImage.size());
+                    // Log.i(TAG, "pickUpImageeeeeeeeeeee" + pickUpImage.size());
                     Intent intent = new Intent();
                     intent.setClass(ShoppingCartActivity.this, OrderDetailActivity.class);
                     intent.putIntegerArrayListExtra("pickUpImage", pickUpImage);
