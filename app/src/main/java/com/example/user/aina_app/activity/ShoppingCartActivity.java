@@ -76,9 +76,9 @@ public class ShoppingCartActivity extends AppCompatActivity {
             good.setGoodQuantity(0);
             goods.add(good);
         }
-        shoppingCartAdapter.putGoods(goods);
+        shoppingCartAdapter.setGoods(goods);
 
-        ShoppingCartAdapter2.onItemClickListener listener = new ShoppingCartAdapter2.onItemClickListener() {
+        ShoppingCartAdapter2.OnItemClickListener listener = new ShoppingCartAdapter2.OnItemClickListener() {
             @Override
             public void onAddClicked(int position) {
                 Log.i(TAG, "add : " + position);
@@ -95,7 +95,7 @@ public class ShoppingCartActivity extends AppCompatActivity {
             }
         };
 
-        shoppingCartAdapter.setMonItemClickListener(listener);
+        shoppingCartAdapter.setOnItemClickListener(listener);
         shoppingCartRecyclerView = (RecyclerView) findViewById(R.id.shoppingcart_recycleview);
 //        MultiSnapRecyclerView shoppingCartRecyclerView = (MultiSnapRecyclerView) findViewById(R.id.shoppingcart_recycleview);
 
@@ -137,33 +137,33 @@ public class ShoppingCartActivity extends AppCompatActivity {
 //            Log.i(TAG, "pickUpImage.size() : " + pickUpImage.size());
             int varprice = 0;
 //            Log.i(TAG, "getCheckedStatus : " + shoppingCartAdapter.getCheckedStatus(i));
-            if (shoppingCartAdapter.getCheckedStatus(i) == true) {
-//                Log.i(TAG, "getPrice : " + i + " " + shoppingCartAdapter.getPrice(i));
-                varprice = Integer.valueOf(shoppingCartAdapter.getPrice(i)); //每一筆
-                int quantity = shoppingCartAdapter.getQuality(i);
-                price = price + varprice * quantity;
-                price1.setText("$" + price);
-
-                pickUpImage.add(shoppingCartAdapter.getImage(i));
-                pickUpProductname.add(shoppingCartAdapter.getProductname(i));
-                pickUpproductPrice.add(shoppingCartAdapter.getPrice(i));
-                pickUpQuantity.add(shoppingCartAdapter.getQuality(i));
-            }
-        }
-        //有price 才有運費
-        if (price != 0) {
-            shippingfee.setText("50");
-            finalprice = price + 50; //假設運費50
-            price2.setText("$" + finalprice);
-            shoppingComfirm.setBackground(getResources().getDrawable(R.drawable.shoppingcart_round_enable));
-
-        } else {
-            shoppingComfirm.setBackground(getResources().getDrawable(R.drawable.shoppingcart_round_disable));
-            shippingfee.setText("0");
-            price2.setText("$" + 0);
-
+//            if (shoppingCartAdapter.getCheckedStatus(i) == true) {
+////                Log.i(TAG, "getPrice : " + i + " " + shoppingCartAdapter.getPrice(i));
+//                varprice = Integer.valueOf(shoppingCartAdapter.getPrice(i)); //每一筆
+//                int quantity = shoppingCartAdapter.getQuality(i);
+//                price = price + varprice * quantity;
+//                price1.setText("$" + price);
+//
+//                pickUpImage.add(shoppingCartAdapter.getImage(i));
+//                pickUpProductname.add(shoppingCartAdapter.getProductname(i));
+//                pickUpproductPrice.add(shoppingCartAdapter.getPrice(i));
+//                pickUpQuantity.add(shoppingCartAdapter.getQuality(i));
         }
     }
+    //有price 才有運費
+//        if (price != 0) {
+//            shippingfee.setText("50");
+//            finalprice = price + 50; //假設運費50
+//            price2.setText("$" + finalprice);
+//            shoppingComfirm.setBackground(getResources().getDrawable(R.drawable.shoppingcart_round_enable));
+//
+//        } else {
+//            shoppingComfirm.setBackground(getResources().getDrawable(R.drawable.shoppingcart_round_disable));
+//            shippingfee.setText("0");
+//            price2.setText("$" + 0);
+//
+//        }
+
 
     public void onclick(View view) {
         switch (view.getId()) {
