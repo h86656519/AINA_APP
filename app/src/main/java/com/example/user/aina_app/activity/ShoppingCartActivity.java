@@ -12,7 +12,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.user.aina_app.Adapter.ShoppingCartAdapter;
+import com.example.user.aina_app.Adapter.ShoppingCartAdapter2;
 import com.example.user.aina_app.R;
 
 import java.util.ArrayList;
@@ -26,8 +26,9 @@ public class ShoppingCartActivity extends AppCompatActivity {
     ArrayList<String> pickUpProductname = new ArrayList<>();
     ArrayList<String> pickUpproductPrice = new ArrayList<>();
     ArrayList<Integer> pickUpQuantity = new ArrayList<>();
+    private ArrayList<Good> goods = new ArrayList<>();
     ShoppingCartActivity mContext;
-    ShoppingCartAdapter shoppingCartAdapter;
+    ShoppingCartAdapter2 shoppingCartAdapter;
     RecyclerView shoppingCartRecyclerView;
     TextView price1, price2, shippingfee;
     Button continueShopping, shoppingComfirm;
@@ -66,14 +67,35 @@ public class ShoppingCartActivity extends AppCompatActivity {
 //        productPrice.add("1300");
 //        productPrice.add("1400");
 //        productPrice.add("1500");
+        shoppingCartAdapter = new ShoppingCartAdapter2(mContext);
         for (int i = 0; i < 6; i++) {
-            Goods goods = new Goods();
-            goods.setGoodImage(R.drawable.product);
-            goods.setGoodName(getResources().getString(R.string.specialproductname_det));
-            goods.setGoodPrice(1000 + i*100);
-            goods.setGoodQuantity(0);
+            Good good = new Good();
+            good.setGoodImage(R.drawable.product);
+            good.setGoodName(getResources().getString(R.string.specialproductname_det));
+            good.setGoodPrice(String.valueOf(1000 + i * 100));
+            good.setGoodQuantity(0);
+            goods.add(good);
         }
-        shoppingCartAdapter = new ShoppingCartAdapter(mContext, selectProductname, selectImage, productPrice);
+        shoppingCartAdapter.putGoods(goods);
+
+        ShoppingCartAdapter2.onItemClickListener listener = new ShoppingCartAdapter2.onItemClickListener() {
+            @Override
+            public void onAddClicked(int position) {
+                Log.i(TAG, "add : " + position);
+            }
+
+            @Override
+            public void onMinusClicked(int position) {
+                Log.i(TAG, "min : " + position);
+            }
+
+            @Override
+            public void onChecked(int position) {
+
+            }
+        };
+
+        shoppingCartAdapter.setMonItemClickListener(listener);
         shoppingCartRecyclerView = (RecyclerView) findViewById(R.id.shoppingcart_recycleview);
 //        MultiSnapRecyclerView shoppingCartRecyclerView = (MultiSnapRecyclerView) findViewById(R.id.shoppingcart_recycleview);
 

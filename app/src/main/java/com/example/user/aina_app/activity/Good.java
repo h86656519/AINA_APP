@@ -1,13 +1,13 @@
 package com.example.user.aina_app.activity;
 
-public class Goods {
-    int goodPrice;
+public class Good {
+    String goodPrice;
     int goodQuantity;
     boolean checkedGoodStatus;
     String goodName;
     int goodImage;
 
-    public void setGoodPrice(int goodPrice) {
+    public void setGoodPrice(String goodPrice) {
         this.goodPrice = goodPrice;
     }
 
@@ -28,8 +28,7 @@ public class Goods {
     }
 
 
-
-    public int getGoodPrice() {
+    public String getGoodPrice() {
         return goodPrice;
     }
 
