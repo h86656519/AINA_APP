@@ -81,6 +81,11 @@ public class ShoppingCartActivity extends AppCompatActivity {
         ShoppingCartAdapter2.OnItemClickListener listener = new ShoppingCartAdapter2.OnItemClickListener() {
             @Override
             public void onAddClicked(int position) {
+//                int quantity = goods.get(position).goodQuantity + 1;
+//                goods.get(position).goodQuantity = quantity;
+
+                goods.get(position).goodQuantity ++;
+                shoppingCartAdapter.notifyDataSetChanged();
                 Log.i(TAG, "add : " + position);
             }
 
