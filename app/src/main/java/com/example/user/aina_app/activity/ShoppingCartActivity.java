@@ -9,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,6 +34,7 @@ public class ShoppingCartActivity extends AppCompatActivity {
     TextView price1, price2, shippingfee;
     Button continueShopping, shoppingComfirm;
     int finalprice; // 總計
+    int quantity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,33 +49,14 @@ public class ShoppingCartActivity extends AppCompatActivity {
 
         initView();
 
-//        selectImage.add(R.drawable.product);
-//        selectImage.add(R.drawable.product);
-//        selectImage.add(R.drawable.product);
-//        selectImage.add(R.drawable.product);
-//        selectImage.add(R.drawable.product);
-//        selectImage.add(R.drawable.product);
-
-//        selectProductname.add(getResources().getString(R.string.specialproductname_det));
-//        selectProductname.add(getResources().getString(R.string.specialproductname_det));
-//        selectProductname.add(getResources().getString(R.string.specialproductname_det));
-//        selectProductname.add(getResources().getString(R.string.specialproductname_det));
-//        selectProductname.add(getResources().getString(R.string.specialproductname_det));
-//        selectProductname.add(getResources().getString(R.string.specialproductname_det));
-
-//        productPrice.add("1000");
-//        productPrice.add("1100");
-//        productPrice.add("1200");
-//        productPrice.add("1300");
-//        productPrice.add("1400");
-//        productPrice.add("1500");
         shoppingCartAdapter = new ShoppingCartAdapter2(mContext);
         for (int i = 0; i < 6; i++) {
             Good good = new Good();
             good.setGoodImage(R.drawable.product);
             good.setGoodName(getResources().getString(R.string.specialproductname_det));
             good.setGoodPrice(String.valueOf(1000 + i * 100));
-            good.setGoodQuantity(0);
+            good.setGoodQuantity(1);
+            good.setCheckedGoodStatus(true);
             goods.add(good);
         }
         shoppingCartAdapter.setGoods(goods);
@@ -84,22 +67,67 @@ public class ShoppingCartActivity extends AppCompatActivity {
 //                int quantity = goods.get(position).goodQuantity + 1;
 //                goods.get(position).goodQuantity = quantity;
 
-                goods.get(position).goodQuantity ++;
-                shoppingCartAdapter.notifyDataSetChanged();
-                Log.i(TAG, "add : " + position);
+                goods.get(position).goodQuantity++;
+                shoppingCartAdapter.notifyItemChanged(position); //個別刷新
+                  Log.i(TAG, "add : " + position);
+                updateTotalPrice();
             }
 
             @Override
             public void onMinusClicked(int position) {
+                Log.i(TAG, " goods.get(position).goodQuantity : " + goods.get(position).goodQuantity);
+                if (goods.get(position).goodQuantity == 1) {
+                    ++goods.get(position).goodQuantity;
+                    Log.i(TAG, "數量不能小於1");
+                    return;
+                }
+
+                goods.get(position).goodQuantity--;
+
+                shoppingCartAdapter.notifyItemChanged(position);
+                updateTotalPrice();
                 Log.i(TAG, "min : " + position);
             }
 
-            @Override
-            public void onChecked(int position) {
+//            private boolean isMinQuantity(Good good) {
+//                return good.goodQuantity == 1;
+//            }
 
+            @Override
+            public void onGoodStatusChecked(int position) {
+//                Log.i(TAG, "onCheckedGoodStatus : ");
+//                Log.i(TAG, "position : " + position);
+                boolean state = goods.get(position).checkedGoodStatus;
+                if (state == true) {
+                    goods.get(position).setCheckedGoodStatus(false);
+                } else {
+                    goods.get(position).setCheckedGoodStatus(true);
+                }
+                updateTotalPrice();
+            }
+
+            @Override
+            public void onQuantityChanged(CharSequence c, int position) {
+                int currentQuantity = goods.get(position).goodQuantity;
+                int newQuantity ;
+                if (c.toString().equals("")) {
+                    Log.i(TAG, "onQuantityChanged : 1  ");
+                    newQuantity = goods.get(position).goodQuantity;
+                    Toast.makeText(ShoppingCartActivity.this, "請填入購買數量 ", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                newQuantity = Integer.parseInt(c.toString());
+                Log.i(TAG, "newQuantity " +  newQuantity);
+                Log.i(TAG, "currentQuantity " +  currentQuantity);
+                if (newQuantity != currentQuantity) {
+                    Log.i(TAG, "newQuantity != currentQuantity ");
+                    goods.get(position).setGoodQuantity(newQuantity);
+                }
+                updateTotalPrice();
             }
         };
-
+        shoppingCartAdapter.notifyDataSetChanged();
         shoppingCartAdapter.setOnItemClickListener(listener);
         shoppingCartRecyclerView = (RecyclerView) findViewById(R.id.shoppingcart_recycleview);
 //        MultiSnapRecyclerView shoppingCartRecyclerView = (MultiSnapRecyclerView) findViewById(R.id.shoppingcart_recycleview);
@@ -136,6 +164,18 @@ public class ShoppingCartActivity extends AppCompatActivity {
         int price = 0;
         finalprice = 0;
         price1.setText("$" + 0);
+       // Log.i(TAG, "updateTotalPrice : ");
+        for (Good good : goods) {
+         //   Log.i(TAG, "good.checkedGoodStatus : " + good.checkedGoodStatus);
+            if (!good.checkedGoodStatus) {
+                continue;
+            }
+            price = Integer.valueOf(good.getGoodPrice());
+            finalprice = finalprice + price * good.getGoodQuantity();
+           // Log.i(TAG, "finalprice : " + finalprice);
+            price1.setText("$" + finalprice);
+            //caculate
+        }
 
 //        Log.i(TAG, "getItemCount : " + shoppingCartRecyclerView.getAdapter().getItemCount());
         for (int i = 0; i < shoppingCartRecyclerView.getAdapter().getItemCount(); i++) {
