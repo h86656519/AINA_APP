@@ -69,7 +69,7 @@ public class ShoppingCartActivity extends AppCompatActivity {
 
                 goods.get(position).goodQuantity++;
                 shoppingCartAdapter.notifyItemChanged(position); //個別刷新
-                  Log.i(TAG, "add : " + position);
+                Log.i(TAG, "add : " + position);
                 updateTotalPrice();
             }
 
@@ -108,18 +108,19 @@ public class ShoppingCartActivity extends AppCompatActivity {
 
             @Override
             public void onQuantityChanged(CharSequence c, int position) {
+                Log.i(TAG, "onQuantityChangeddddd ");
                 int currentQuantity = goods.get(position).goodQuantity;
-                int newQuantity ;
+                int newQuantity;
                 if (c.toString().equals("")) {
                     Log.i(TAG, "onQuantityChanged : 1  ");
-                    newQuantity = goods.get(position).goodQuantity;
+//                    newQuantity = goods.get(position).goodQuantity;
                     Toast.makeText(ShoppingCartActivity.this, "請填入購買數量 ", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 newQuantity = Integer.parseInt(c.toString());
-                Log.i(TAG, "newQuantity " +  newQuantity);
-                Log.i(TAG, "currentQuantity " +  currentQuantity);
+                Log.i(TAG, "newQuantity " + newQuantity);
+                Log.i(TAG, "currentQuantity " + currentQuantity);
                 if (newQuantity != currentQuantity) {
                     Log.i(TAG, "newQuantity != currentQuantity ");
                     goods.get(position).setGoodQuantity(newQuantity);
@@ -164,15 +165,15 @@ public class ShoppingCartActivity extends AppCompatActivity {
         int price = 0;
         finalprice = 0;
         price1.setText("$" + 0);
-       // Log.i(TAG, "updateTotalPrice : ");
+        // Log.i(TAG, "updateTotalPrice : ");
         for (Good good : goods) {
-         //   Log.i(TAG, "good.checkedGoodStatus : " + good.checkedGoodStatus);
+            //   Log.i(TAG, "good.checkedGoodStatus : " + good.checkedGoodStatus);
             if (!good.checkedGoodStatus) {
                 continue;
             }
             price = Integer.valueOf(good.getGoodPrice());
             finalprice = finalprice + price * good.getGoodQuantity();
-           // Log.i(TAG, "finalprice : " + finalprice);
+            // Log.i(TAG, "finalprice : " + finalprice);
             price1.setText("$" + finalprice);
             //caculate
         }
