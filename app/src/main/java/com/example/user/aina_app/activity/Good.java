@@ -1,6 +1,8 @@
 package com.example.user.aina_app.activity;
 
-public class Good {
+import java.io.Serializable;
+
+public class Good implements Serializable {
     String goodPrice;
     int goodQuantity;
     boolean checkedGoodStatus;

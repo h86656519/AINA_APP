@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.example.user.aina_app.Adapter.ShoppingCartAdapter2;
 import com.example.user.aina_app.R;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 public class ShoppingCartActivity extends AppCompatActivity {
@@ -31,9 +32,9 @@ public class ShoppingCartActivity extends AppCompatActivity {
     ShoppingCartActivity mContext;
     ShoppingCartAdapter2 shoppingCartAdapter;
     RecyclerView shoppingCartRecyclerView;
-    TextView price1, price2, shippingfee;
+    TextView totalPrice_tv, finalprice_tv, shippingfee;
     Button continueShopping, shoppingComfirm;
-    int finalprice; // 總計
+    int totalPrice,finalprice; // 總計
     int quantity;
 
     @Override
@@ -41,8 +42,8 @@ public class ShoppingCartActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shopping_cart); // 新建avtivity時 R 檔產生不好，解決: alt + enter
         mContext = this;
-        price1 = (TextView) findViewById(R.id.price1);
-        price2 = (TextView) findViewById(R.id.price2);
+        totalPrice_tv = (TextView) findViewById(R.id.price1);
+        finalprice_tv = (TextView) findViewById(R.id.price2);
         shippingfee = (TextView) findViewById(R.id.shippingfee);
         continueShopping = (Button) findViewById(R.id.continueShopping);
         shoppingComfirm = (Button) findViewById(R.id.shoppingComfirm);
@@ -83,7 +84,6 @@ public class ShoppingCartActivity extends AppCompatActivity {
                 }
 
                 goods.get(position).goodQuantity--;
-
                 shoppingCartAdapter.notifyItemChanged(position);
                 updateTotalPrice();
                 Log.i(TAG, "min : " + position);
@@ -112,7 +112,7 @@ public class ShoppingCartActivity extends AppCompatActivity {
                 int currentQuantity = goods.get(position).goodQuantity;
                 int newQuantity;
                 if (c.toString().equals("")) {
-                    Log.i(TAG, "onQuantityChanged : 1  ");
+                    Log.i(TAG, "c.toString().equals");
 //                    newQuantity = goods.get(position).goodQuantity;
                     Toast.makeText(ShoppingCartActivity.this, "請填入購買數量 ", Toast.LENGTH_SHORT).show();
                     return;
@@ -160,11 +160,11 @@ public class ShoppingCartActivity extends AppCompatActivity {
 
     }
 
-    // 更新總價
+    // 更新價格
     public void updateTotalPrice() {
         int price = 0;
-        finalprice = 0;
-        price1.setText("$" + 0);
+        totalPrice = 0; //總價
+        totalPrice_tv.setText("$" + 0);
         // Log.i(TAG, "updateTotalPrice : ");
         for (Good good : goods) {
             //   Log.i(TAG, "good.checkedGoodStatus : " + good.checkedGoodStatus);
@@ -172,44 +172,27 @@ public class ShoppingCartActivity extends AppCompatActivity {
                 continue;
             }
             price = Integer.valueOf(good.getGoodPrice());
-            finalprice = finalprice + price * good.getGoodQuantity();
+            totalPrice = totalPrice + price * good.getGoodQuantity();
             // Log.i(TAG, "finalprice : " + finalprice);
-            price1.setText("$" + finalprice);
+            totalPrice_tv.setText("$" + totalPrice);
             //caculate
         }
 
-//        Log.i(TAG, "getItemCount : " + shoppingCartRecyclerView.getAdapter().getItemCount());
-        for (int i = 0; i < shoppingCartRecyclerView.getAdapter().getItemCount(); i++) {
-//            Log.i(TAG, "pickUpImage.size() : " + pickUpImage.size());
-            int varprice = 0;
-//            Log.i(TAG, "getCheckedStatus : " + shoppingCartAdapter.getCheckedStatus(i));
-//            if (shoppingCartAdapter.getCheckedStatus(i) == true) {
-////                Log.i(TAG, "getPrice : " + i + " " + shoppingCartAdapter.getPrice(i));
-//                varprice = Integer.valueOf(shoppingCartAdapter.getPrice(i)); //每一筆
-//                int quantity = shoppingCartAdapter.getQuality(i);
-//                price = price + varprice * quantity;
-//                price1.setText("$" + price);
-//
-//                pickUpImage.add(shoppingCartAdapter.getImage(i));
-//                pickUpProductname.add(shoppingCartAdapter.getProductname(i));
-//                pickUpproductPrice.add(shoppingCartAdapter.getPrice(i));
-//                pickUpQuantity.add(shoppingCartAdapter.getQuality(i));
+        //有price 才有運費
+        if (totalPrice != 0) {
+            shippingfee.setText("50");
+            finalprice = totalPrice + 50; //假設運費50
+            finalprice_tv.setText("$" + finalprice);
+            shoppingComfirm.setBackground(getResources().getDrawable(R.drawable.shoppingcart_round_enable));
+
+        } else {
+            shoppingComfirm.setBackground(getResources().getDrawable(R.drawable.shoppingcart_round_disable));
+            shippingfee.setText("0");
+            finalprice = 0;
+            finalprice_tv.setText("$" + 0);
+
         }
     }
-    //有price 才有運費
-//        if (price != 0) {
-//            shippingfee.setText("50");
-//            finalprice = price + 50; //假設運費50
-//            price2.setText("$" + finalprice);
-//            shoppingComfirm.setBackground(getResources().getDrawable(R.drawable.shoppingcart_round_enable));
-//
-//        } else {
-//            shoppingComfirm.setBackground(getResources().getDrawable(R.drawable.shoppingcart_round_disable));
-//            shippingfee.setText("0");
-//            price2.setText("$" + 0);
-//
-//        }
-
 
     public void onclick(View view) {
         switch (view.getId()) {
@@ -221,11 +204,9 @@ public class ShoppingCartActivity extends AppCompatActivity {
                 } else {
                     // Log.i(TAG, "pickUpImageeeeeeeeeeee" + pickUpImage.size());
                     Intent intent = new Intent();
-                    intent.setClass(ShoppingCartActivity.this, OrderDetailActivity.class);
-                    intent.putIntegerArrayListExtra("pickUpImage", pickUpImage);
-                    intent.putStringArrayListExtra("pickUpProductname", pickUpProductname);
-                    intent.putStringArrayListExtra("pickUpproductPrice", pickUpproductPrice);
-                    intent.putIntegerArrayListExtra("pickUpQuantity", pickUpQuantity);
+                    intent.setClass(ShoppingCartActivity.this, OrderDetailActivity2.class);
+//                    intent.putIntegerArrayListExtra("pickUpImage", pickUpImage);
+                    intent.putExtra("goods", (Serializable)goods);
                     startActivity(intent);
                 }
                 //連到結帳頁面

@@ -37,7 +37,7 @@
         <activity android:name=".activity.ProductVerifyActivity" />
         <activity android:name=".activity.ShoppingCartActivity" />
         <activity android:name=".activity.EventVerification" />
-        <activity android:name=".activity.OrderDetailActivity" />
+        <activity android:name=".activity.OrderDetailActivity2" />
         <activity android:name=".activity.CouponSelectionActivity" />
         <activity android:name=".activity.AddSelectCreditcardActivity" />
         <activity android:name=".activity.AddCreditCardActivity" />

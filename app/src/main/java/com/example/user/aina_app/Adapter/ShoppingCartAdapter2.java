@@ -83,7 +83,7 @@ public class ShoppingCartAdapter2 extends RecyclerView.Adapter<ShoppingCartAdapt
                 @Override
                 public void onTextChanged(CharSequence s, int start, int before, int count) {
                     onItemClickListener.onQuantityChanged(s, i);
-                    Log.i(TAG, "i : " + i);
+                    Log.i(TAG, "onTextChanged i : " + i);
 
                 }
 
