@@ -24,7 +24,8 @@ import java.util.ArrayList;
 
 public class ShoppingCartAdapter2 extends RecyclerView.Adapter<ShoppingCartAdapter2.ViewHolder> {
     private final String TAG = "ShoppingCartAdapter2";
-    View view;
+
+    private View view;
 
     public void setGoods(ArrayList<Good> goods) {
         this.goods = goods;
@@ -41,7 +42,6 @@ public class ShoppingCartAdapter2 extends RecyclerView.Adapter<ShoppingCartAdapt
     @Override
     public ShoppingCartAdapter2.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.shoppingcart_card, viewGroup, false);
-
         return new ViewHolder(view);
     }
 
@@ -49,9 +49,6 @@ public class ShoppingCartAdapter2 extends RecyclerView.Adapter<ShoppingCartAdapt
     public void onBindViewHolder(@NonNull ShoppingCartAdapter2.ViewHolder holder, final int i) {
         Good good = goods.get(i);
         holder.productcheck.setChecked(true);
-
-        // Integer a = quantity_list[position];
-        //   holder.etQuantity.clearFocus();
         holder.button_add.setTag("+");
         holder.button_reduce.setTag("-");
         holder.producname.setText(good.getGoodName());
@@ -84,7 +81,6 @@ public class ShoppingCartAdapter2 extends RecyclerView.Adapter<ShoppingCartAdapt
                 public void onTextChanged(CharSequence s, int start, int before, int count) {
                     onItemClickListener.onQuantityChanged(s, i);
                     Log.i(TAG, "onTextChanged i : " + i);
-
                 }
 
                 @Override
@@ -93,14 +89,16 @@ public class ShoppingCartAdapter2 extends RecyclerView.Adapter<ShoppingCartAdapt
                 }
             });
 
-            holder.productcheck.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    onItemClickListener.onGoodStatusChecked(i);
-                }
-            });
-        }
 
+            holder.productcheck.setOnClickListener(new View.OnClickListener() {
+                                                       @Override
+                                                       public void onClick(View v) {
+                                                           onItemClickListener.onGoodStatusChecked(i);
+                                                       }
+                                                   }
+            );
+
+        }
 
     }
 

@@ -4,9 +4,9 @@ import java.io.Serializable;
 
 public class Good implements Serializable {
     private double goodPrice;
-    private  int goodQuantity;
-    private   boolean checkedGoodStatus;
-    private   String goodName;
+    private int goodQuantity;
+    private boolean checkedGoodStatus;
+    private String goodName;
     private int goodImage;
 
     public void setGoodPrice(double goodPrice) {
