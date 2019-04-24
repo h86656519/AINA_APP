@@ -184,7 +184,7 @@ public class OrderDetailActivity2 extends AppCompatActivity {
             TextView paymentAmountNumber = (TextView) findViewById(R.id.paymentAmount_number);
             TextView delieverAmounNnumber = (TextView) findViewById(R.id.delieverAmount_number);
             TextView goodAmountNumber = (TextView) findViewById(R.id.goodAmount_number);
-            varprice = Integer.valueOf(goods.get(i).getGoodPrice()); //每一筆
+            varprice = (int)goods.get(i).getGoodPrice(); //每一筆
             quantity = goods.get(i).getGoodQuantity();
             price = price + varprice * quantity;
             goodAmountNumber.setText("$" + String.valueOf(price));

@@ -102,7 +102,6 @@ public class ShoppingCartAdapter extends RecyclerView.Adapter<ShoppingCartAdapte
                     //Toast.makeText(buttonView.getContext(), "quantity_list : " + quantity_list[position] + "+" + position + "+" + quantity, Toast.LENGTH_SHORT).show();
                 }
                 Log.i(TAG,"1" );
-                mContext.removepickup();
                 mContext.updateTotalPrice(); //調用activity 裡的方法用
 
             }
@@ -148,7 +147,7 @@ public class ShoppingCartAdapter extends RecyclerView.Adapter<ShoppingCartAdapte
                         //   holder.etQuantity.setText(String.valueOf(quantity_list[position]));
                         holder.etQuantity.setText(String.valueOf(quantity_list.get(position)));
 
-                        mContext.removepickup();
+
                         mContext.updateTotalPrice();
 
                     } else {
@@ -157,7 +156,7 @@ public class ShoppingCartAdapter extends RecyclerView.Adapter<ShoppingCartAdapte
                         quantity = numInt;
                         //quantity_list[position] = quantity;
                         quantity_list.set(position, quantity);
-                        mContext.removepickup();
+
                         mContext.updateTotalPrice();
                     }
 
@@ -197,7 +196,7 @@ public class ShoppingCartAdapter extends RecyclerView.Adapter<ShoppingCartAdapte
                             quantity_list.set(position, quantity);
                             //   holder.etQuantity.setText(String.valueOf(quantity_list[position]));
                             holder.etQuantity.setText(String.valueOf(quantity_list.get(position)));
-                            mContext.removepickup();
+
                             mContext.updateTotalPrice();
                         }
                     }
@@ -230,7 +229,7 @@ public class ShoppingCartAdapter extends RecyclerView.Adapter<ShoppingCartAdapte
                             quantity_list.set(position, quantity);
                             // holder.etQuantity.setText(String.valueOf(quantity_list[position]));
                             holder.etQuantity.setText(String.valueOf(quantity_list.get(position)));
-                            mContext.removepickup();
+
                             mContext.updateTotalPrice();
                         }
                     }

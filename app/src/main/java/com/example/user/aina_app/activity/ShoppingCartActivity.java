@@ -18,23 +18,19 @@ import com.example.user.aina_app.R;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Iterator;
 
 public class ShoppingCartActivity extends AppCompatActivity {
     private final String TAG = "ShoppingCartActivity";
-    ArrayList<Integer> selectImage = new ArrayList<>();
-    ArrayList<String> selectProductname = new ArrayList<>();
-    ArrayList<String> productPrice = new ArrayList<>();
-    ArrayList<Integer> pickUpImage = new ArrayList<>();
-    ArrayList<String> pickUpProductname = new ArrayList<>();
-    ArrayList<String> pickUpproductPrice = new ArrayList<>();
-    ArrayList<Integer> pickUpQuantity = new ArrayList<>();
     private ArrayList<Good> goods = new ArrayList<>();
     ShoppingCartActivity mContext;
     ShoppingCartAdapter2 shoppingCartAdapter;
     RecyclerView shoppingCartRecyclerView;
     TextView totalPrice_tv, finalprice_tv, shippingfee;
     Button continueShopping, shoppingComfirm;
-    int totalPrice,finalprice; // 總計
+    int totalPrice, finalprice; // 總計
     int quantity;
 
     @Override
@@ -51,11 +47,15 @@ public class ShoppingCartActivity extends AppCompatActivity {
         initView();
 
         shoppingCartAdapter = new ShoppingCartAdapter2(mContext);
+
         for (int i = 0; i < 6; i++) {
             Good good = new Good();
+            if (i == 3) {
+                good = new DiscountGood();
+            }
             good.setGoodImage(R.drawable.product);
             good.setGoodName(getResources().getString(R.string.specialproductname_det));
-            good.setGoodPrice(String.valueOf(1000 + i * 100));
+            good.setGoodPrice(1000 + i * 100);
             good.setGoodQuantity(1);
             good.setCheckedGoodStatus(true);
             goods.add(good);
@@ -65,10 +65,10 @@ public class ShoppingCartActivity extends AppCompatActivity {
         ShoppingCartAdapter2.OnItemClickListener listener = new ShoppingCartAdapter2.OnItemClickListener() {
             @Override
             public void onAddClicked(int position) {
-//                int quantity = goods.get(position).goodQuantity + 1;
-//                goods.get(position).goodQuantity = quantity;
+                int quantity = goods.get(position).getGoodQuantity() + 1;
+                goods.get(position).setGoodQuantity(quantity);
 
-                goods.get(position).goodQuantity++;
+//                goods.get(position).goodQuantity++;
                 shoppingCartAdapter.notifyItemChanged(position); //個別刷新
                 Log.i(TAG, "add : " + position);
                 updateTotalPrice();
@@ -76,14 +76,16 @@ public class ShoppingCartActivity extends AppCompatActivity {
 
             @Override
             public void onMinusClicked(int position) {
-                Log.i(TAG, " goods.get(position).goodQuantity : " + goods.get(position).goodQuantity);
-                if (goods.get(position).goodQuantity == 1) {
-                    ++goods.get(position).goodQuantity;
+                Log.i(TAG, " goods.get(position).goodQuantity : " + goods.get(position).getGoodQuantity());
+                if (goods.get(position).getGoodQuantity() == 1) {
+                    int q = goods.get(position).getGoodQuantity() + 1;
+                    goods.get(position).setGoodQuantity(q);
                     Log.i(TAG, "數量不能小於1");
                     return;
                 }
 
-                goods.get(position).goodQuantity--;
+                int q = goods.get(position).getGoodQuantity() - 1;
+                goods.get(position).setGoodQuantity(q);
                 shoppingCartAdapter.notifyItemChanged(position);
                 updateTotalPrice();
                 Log.i(TAG, "min : " + position);
@@ -97,7 +99,7 @@ public class ShoppingCartActivity extends AppCompatActivity {
             public void onGoodStatusChecked(int position) {
 //                Log.i(TAG, "onCheckedGoodStatus : ");
 //                Log.i(TAG, "position : " + position);
-                boolean state = goods.get(position).checkedGoodStatus;
+                boolean state = goods.get(position).isCheckedGoodStatus();
                 if (state == true) {
                     goods.get(position).setCheckedGoodStatus(false);
                 } else {
@@ -109,7 +111,7 @@ public class ShoppingCartActivity extends AppCompatActivity {
             @Override
             public void onQuantityChanged(CharSequence c, int position) {
                 Log.i(TAG, "onQuantityChangeddddd ");
-                int currentQuantity = goods.get(position).goodQuantity;
+                int currentQuantity = goods.get(position).getGoodQuantity();
                 int newQuantity;
                 if (c.toString().equals("")) {
                     Log.i(TAG, "c.toString().equals");
@@ -168,10 +170,15 @@ public class ShoppingCartActivity extends AppCompatActivity {
         // Log.i(TAG, "updateTotalPrice : ");
         for (Good good : goods) {
             //   Log.i(TAG, "good.checkedGoodStatus : " + good.checkedGoodStatus);
-            if (!good.checkedGoodStatus) {
+            if (!good.isCheckedGoodStatus()) {
                 continue;
             }
-            price = Integer.valueOf(good.getGoodPrice());
+
+            if (good.getGoodQuantity() % 10 >= 1) {
+                Log.i(TAG, "免費 " + good.getGoodQuantity() + " / " +  good.getGoodQuantity() % 10);
+            }
+
+            price = (int) good.getGoodPrice();
             totalPrice = totalPrice + price * good.getGoodQuantity();
             // Log.i(TAG, "finalprice : " + finalprice);
             totalPrice_tv.setText("$" + totalPrice);
@@ -206,7 +213,8 @@ public class ShoppingCartActivity extends AppCompatActivity {
                     Intent intent = new Intent();
                     intent.setClass(ShoppingCartActivity.this, OrderDetailActivity2.class);
 //                    intent.putIntegerArrayListExtra("pickUpImage", pickUpImage);
-                    intent.putExtra("goods", (Serializable)goods);
+                    ArrayList<Good> newGoods = getCheckedGoods();
+                    intent.putExtra("goods", (Serializable) newGoods);
                     startActivity(intent);
                 }
                 //連到結帳頁面
@@ -214,10 +222,14 @@ public class ShoppingCartActivity extends AppCompatActivity {
         }
     }
 
-    public void removepickup() {
-        pickUpImage.clear();
-        pickUpProductname.clear();
-        pickUpproductPrice.clear();
-        pickUpQuantity.clear();
+    //只需要 goods 裡面為true 的商品
+    public ArrayList<Good> getCheckedGoods() {
+        ArrayList<Good> newGoods = new ArrayList<>();
+        for (int i = 0; i < goods.size(); i++) {
+            if (goods.get(i).isCheckedGoodStatus()) {
+                newGoods.add(goods.get(i));
+            }
+        }
+        return newGoods;
     }
 }

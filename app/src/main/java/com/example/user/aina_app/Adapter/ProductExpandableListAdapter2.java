@@ -59,7 +59,7 @@ public class ProductExpandableListAdapter2 extends BaseExpandableListAdapter {
 
         producNameListChild.setText(goods.get(childPosition).getGoodName());
         // productPriceListChild.setText(productPrice.get(childPosition));  單品單價
-        String Price = String.valueOf(Integer.valueOf(goods.get(childPosition).getGoodPrice()) * goods.get(childPosition).getGoodQuantity()); // 單品總價
+        String Price = String.valueOf(goods.get(childPosition).getGoodPrice() * goods.get(childPosition).getGoodQuantity()); // 單品總價
         productPriceListChild.setText(Price);
         productImageListChild.setImageResource(goods.get(childPosition).getGoodImage());
 
@@ -70,7 +70,6 @@ public class ProductExpandableListAdapter2 extends BaseExpandableListAdapter {
 
     @Override
     public int getChildrenCount(int groupPosition) {
-
         return goods.size();
     }
 

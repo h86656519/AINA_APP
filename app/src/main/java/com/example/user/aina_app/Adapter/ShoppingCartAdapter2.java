@@ -57,7 +57,7 @@ public class ShoppingCartAdapter2 extends RecyclerView.Adapter<ShoppingCartAdapt
         holder.producname.setText(good.getGoodName());
 //        holder.etQuantity.setText(good.getGoodQuantity() + "");
         holder.etQuantity.setText(String.valueOf(good.getGoodQuantity()));
-        holder.productPrice.setText(good.getGoodPrice());
+        holder.productPrice.setText(String.valueOf(good.getGoodPrice()));
         holder.etQuantity.setInputType(android.text.InputType.TYPE_CLASS_NUMBER);
         holder.etQuantity.setTag(i);
         if (onItemClickListener != null) {

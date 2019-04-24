@@ -3,13 +3,13 @@ package com.example.user.aina_app.activity;
 import java.io.Serializable;
 
 public class Good implements Serializable {
-    String goodPrice;
-    int goodQuantity;
-    boolean checkedGoodStatus;
-    String goodName;
-    int goodImage;
+    private double goodPrice;
+    private  int goodQuantity;
+    private   boolean checkedGoodStatus;
+    private   String goodName;
+    private int goodImage;
 
-    public void setGoodPrice(String goodPrice) {
+    public void setGoodPrice(double goodPrice) {
         this.goodPrice = goodPrice;
     }
 
@@ -30,7 +30,7 @@ public class Good implements Serializable {
     }
 
 
-    public String getGoodPrice() {
+    public double getGoodPrice() {
         return goodPrice;
     }
 
