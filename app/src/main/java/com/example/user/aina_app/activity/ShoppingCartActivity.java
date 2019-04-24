@@ -153,21 +153,8 @@ public class ShoppingCartActivity extends AppCompatActivity {
 
 
     public void initData() {
-        for (int i = 0; i < 6; i++) {
-            Good good = new Good();
-            if (i == 3) {
-                good = new DiscountGood();
-            }
-//            else if(i == 2){
-//                good = new FreeGood();
-//            }
-            good.setGoodImage(R.drawable.product);
-            good.setGoodName(getResources().getString(R.string.specialproductname_det));
-            good.setGoodPrice(1000 + i * 100);
-            good.setGoodQuantity(1);
-            good.setCheckedGoodStatus(true);
-            goods.add(good);
-        }
+        GoodFactory goodFactory = new GoodFactory();
+        goods.addAll(goodFactory.createdGood(getResources()));
     }
 
     // 更新價格
