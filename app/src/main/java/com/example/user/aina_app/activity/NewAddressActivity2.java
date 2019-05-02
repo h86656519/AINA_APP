@@ -1,12 +1,11 @@
 package com.example.user.aina_app.activity;
 
 import android.content.ContentValues;
-import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.graphics.Color;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -20,13 +19,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.user.aina_app.R;
+import com.example.user.aina_app.common.CostumerDao;
+import com.example.user.aina_app.common.Customer;
 import com.example.user.aina_app.common.MyDBHelper;
 
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class NewAddressActivity extends AppCompatActivity {
+public class NewAddressActivity2 extends AppCompatActivity {
     private final String TAG = "NewAddressActivity";
     private String[] province = new String[]{"請選擇縣市", "台北市", "新北市"};
     private String[] city = new String[]{"請選擇鄉鎮市區", "100 中正區", "103 大同區", "104 中山區", "105 松山區",
@@ -48,7 +49,6 @@ public class NewAddressActivity extends AppCompatActivity {
     ArrayAdapter<String> spCityselectListeneradapter;
     ArrayAdapter<String> spCountrysideadapter;
     int pos;
-    //    private String totallist[] = new String[7];
     ArrayList<String> totallist = new ArrayList<String>();
     EditText receiver, phone, street;
     Boolean hasDigitflag, recipientVertifyresult = false, phoneVertifyresult = false, streetVertifyresult = false, finalcheck = false, cityresult = false, countrysideresult = false;
@@ -66,7 +66,7 @@ public class NewAddressActivity extends AppCompatActivity {
             totallist.add(i, "0");
         }
         initView();
-        openDatabase();
+     //   openDatabase();
     }
 
     public void initView() {
@@ -89,20 +89,20 @@ public class NewAddressActivity extends AppCompatActivity {
         receiver.setHint(R.string.receiver_hint);
         phone.setHint(R.string.phone_hint);
         street.setHint(R.string.street_hint);
-        receiver.addTextChangedListener(new NewTextWatcher(receiver, "receiver"));
-        phone.addTextChangedListener(new NewTextWatcher(phone, "phone"));
-        street.addTextChangedListener(new NewTextWatcher(street, "street"));
-        receiver.setOnFocusChangeListener(new newOnFocusChangeListener(receiver, "receiver"));
-        phone.setOnFocusChangeListener(new newOnFocusChangeListener(phone, "phone"));
-        street.setOnFocusChangeListener(new newOnFocusChangeListener(street, "street"));
+        receiver.addTextChangedListener(new NewAddressActivity2.NewTextWatcher(receiver, "receiver"));
+        phone.addTextChangedListener(new NewAddressActivity2.NewTextWatcher(phone, "phone"));
+        street.addTextChangedListener(new NewAddressActivity2.NewTextWatcher(street, "street"));
+        receiver.setOnFocusChangeListener(new NewAddressActivity2.newOnFocusChangeListener(receiver, "receiver"));
+        phone.setOnFocusChangeListener(new NewAddressActivity2.newOnFocusChangeListener(phone, "phone"));
+        street.setOnFocusChangeListener(new NewAddressActivity2.newOnFocusChangeListener(street, "street"));
 
-        spCityselectListeneradapter = new ArrayAdapter<String>(NewAddressActivity.this, android.R.layout.simple_spinner_item, province);
+        spCityselectListeneradapter = new ArrayAdapter<String>(NewAddressActivity2.this, android.R.layout.simple_spinner_item, province);
         spCityselectListeneradapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spCity = (Spinner) findViewById(R.id.city_spinner);
         spCity.setAdapter(spCityselectListeneradapter);
         spCity.setOnItemSelectedListener(spCityselectListener);
 
-        spCountrysideadapter = new ArrayAdapter<String>(NewAddressActivity.this, android.R.layout.simple_spinner_item, city);
+        spCountrysideadapter = new ArrayAdapter<String>(NewAddressActivity2.this, android.R.layout.simple_spinner_item, city);
         spCountryside = (Spinner) findViewById(R.id.countryside_spinner);
         spCountryside.setAdapter(spCountrysideadapter);
         spCountryside.setOnItemSelectedListener(spCountrysideselectListener);
@@ -116,7 +116,7 @@ public class NewAddressActivity extends AppCompatActivity {
             pos = spCity.getSelectedItemPosition();
             if (pos == 0) {
 //                spCountrysideadapter = new ArrayAdapter<String>(AddCreditCardActivity.this, android.R.productvetifydetail_layout.simple_spinner_dropdown_item, pandc[pos]);
-                spCountrysideadapter = new ArrayAdapter<String>(NewAddressActivity.this, android.R.layout.simple_spinner_item, pandc[pos]);
+                spCountrysideadapter = new ArrayAdapter<String>(NewAddressActivity2.this, android.R.layout.simple_spinner_item, pandc[pos]);
                 spCountrysideadapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 spCountryside.setEnabled(false);
                 spCountrysideadapter.notifyDataSetChanged();
@@ -124,7 +124,7 @@ public class NewAddressActivity extends AppCompatActivity {
             } else {
                 spCountryside.setEnabled(true);
                 //spCountrysideadapter = new ArrayAdapter<String>(AddCreditCardActivity.this, android.R.productvetifydetail_layout.simple_spinner_dropdown_item, pandc[pos]);
-                spCountrysideadapter = new ArrayAdapter<String>(NewAddressActivity.this, android.R.layout.simple_spinner_item, pandc[pos]);
+                spCountrysideadapter = new ArrayAdapter<String>(NewAddressActivity2.this, android.R.layout.simple_spinner_item, pandc[pos]);
                 spCountrysideadapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 spCountryside.setAdapter(spCountrysideadapter);
                 //  totallist.set(3,String.valueOf(position));
@@ -335,26 +335,15 @@ public class NewAddressActivity extends AppCompatActivity {
         nullVertify(phone);
         nullVertify(street);
 
-//        Log.i(TAG, "finish finalcheck : " + finalcheck);
-//        Log.i(TAG, "recipientVertifyresult : " + recipientVertifyresult);
-//        Log.i(TAG, "streetVertifyresult : " + streetVertifyresult);
-//        Log.i(TAG, "phoneVertifyresult : " + phoneVertifyresult);
-//        Log.i(TAG, "cityresult : " + cityresult);
-//        Log.i(TAG, "countrysideresult : " + countrysideresult);
-
         if (recipientVertifyresult && streetVertifyresult && phoneVertifyresult && cityresult && countrysideresult) {
-//            totallist[0] = receiver.getText().toString();
-//            totallist[1] = phone.getText().toString();
-//            totallist[2] = street.getText().toString();
             totallist.add(0, receiver.getText().toString());
             totallist.add(1, phone.getText().toString());
             totallist.add(2, street.getText().toString());
-            Log.i(TAG, "98453416354 : " );
 //            Intent intent =new Intent();
 //            intent.putStringArrayListExtra("totallist",totallist);
 //            intent.setClass(NewAddressActivity.this,DeliverByHomeActivity.class);
 //            startActivity(intent);
-            //  add();
+              add();
         }
 
     }
@@ -379,21 +368,17 @@ public class NewAddressActivity extends AppCompatActivity {
         address.append(spCity.getSelectedItem().toString());
         address.append(spCountryside.getSelectedItem().toString());
         address.append(street.getText().toString());
-        Log.i(TAG, "String.valueOf(address) : " + String.valueOf(address));
+//        Log.i(TAG, "add address : " + String.valueOf(address));
 
-        try {
-            ContentValues values = new ContentValues();  //建立 ContentValues 物件並呼叫 put(key,value) 儲存欲新增的資料，key 為欄位名稱  value 為對應值。
-            values.put("name", receiver.getText().toString());
-            values.put("address", String.valueOf(address));
-            values.put("phone", phone.getText().toString());
-            db.insert("customer", null, values);
-            Log.i(TAG, "db2 : " + db);
-            db.close();
-        } catch (SQLiteException e) {
-            Toast toast = Toast.makeText(NewAddressActivity.this, "寫入失敗", Toast.LENGTH_SHORT);
-            toast.show();
-        }
+        CostumerDao dao = new CostumerDao(this);
+        Customer customer = new Customer();
+        customer.setName(receiver.getText().toString());
+        customer.setPhone(Integer.valueOf(phone.getText().toString()));
+        customer.setAddress(String.valueOf(address));
+        dao.insert(customer);
+    }
 
-
+    public void testFun() {
+        CostumerDao dao = new CostumerDao(this);
     }
 }

@@ -63,7 +63,7 @@ public class DeliverByHomeActivity extends AppCompatActivity {
     }
 
     public void onclick(View view) {
-        startActivity(new Intent(this, NewAddressActivity.class));
+        startActivity(new Intent(this, NewAddressActivity2.class));
     }
 
     //讀取全部的資料內容

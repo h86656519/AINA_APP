@@ -44,7 +44,7 @@
         <activity android:name=".activity.DeliverByMarketActivity" />
         <activity android:name=".activity.ProductvetifyDetailActivity" />
         <activity android:name=".activity.DeliverByHomeActivity" />
-        <activity android:name=".activity.NewAddressActivity" />
+        <activity android:name=".activity.NewAddressActivity2" />
 
         <provider
             android:name="android.support.v4.content.FileProvider"
