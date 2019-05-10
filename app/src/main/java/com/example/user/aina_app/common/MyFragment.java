@@ -42,9 +42,9 @@ import static android.app.Activity.RESULT_OK;
  */
 public class MyFragment extends Fragment {
     private final String TAG = "MyFragment";
-    View view;
+    private View view;
     private String[] items = new String[]{"從圖庫中選擇", "拍照"};
-    ImageView userpic;
+    private ImageView userpic;
     // CustomRoundAngleImageView userpic;
     private static final int IMAGE_REQUEST_CODE = 0x000;
     private static final int CAMERA_REQUEST_CODE = 0x001;
@@ -59,13 +59,11 @@ public class MyFragment extends Fragment {
     private File fileCropUri = new File(Environment.getExternalStorageDirectory().getPath() + "/" + folderName + "/" + "crop_photo.jpg"); //相機裁修過後的圖片
 
     public MyFragment() {
-        // Required empty public constructor
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the productvetifydetail_layout for this fragment
         view = inflater.inflate(R.layout.fragment_my, container, false);
         initView();
         initPath();
@@ -102,17 +100,6 @@ public class MyFragment extends Fragment {
 
         userpic.setOnClickListener(listener);
     }
-
-//    @Override
-//    public void onClick(View v) {
-//        //  Log.i(TAG, ":" + v.getId());
-//        switch (v.getId()) {
-//            case R.id.userpic_imageview:
-//                //showDialog();
-//                Log.i(TAG, "59641161 :");
-//                break;
-//        }
-//    }
 
     private void showDialog() {
         new AlertDialog.Builder(getActivity())
@@ -170,8 +157,6 @@ public class MyFragment extends Fragment {
 //                            if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
 //                                mIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
 //                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-//
-//
 //                                }
 //                            }
 //                        }
@@ -200,13 +185,10 @@ public class MyFragment extends Fragment {
             switch (requestCode) {
                 case IMAGE_REQUEST_CODE:
                     mUri = data.getData();  // 要被裁剪图片
-                    // Log.d(TAG, "IMAGE_REQUEST_CODE: ");
                     CutForPhoto(mUri, CODE_RESULT_REQUEST);
-
                     break;
 
                 case CAMERA_REQUEST_CODE:
-                    //   Log.d(TAG, "CAMERA_REQUEST_CODE: ");
                     cropImageUri = Uri.fromFile(fileCropUri);
                     cropImageUri(imageUri, cropImageUri, 1, 1, 480, 480, CODE_RESULT_REQUEST);
                     break;
@@ -219,9 +201,7 @@ public class MyFragment extends Fragment {
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
-
                         fileUri.delete();
-
                     }
                     break;
             }
@@ -229,7 +209,6 @@ public class MyFragment extends Fragment {
     }
 
     private void CutForPhoto(Uri uri, int requestCode) {
-
         try {
             //直接裁剪
             Intent intent = new Intent("com.android.camera.action.CROP");
@@ -321,10 +300,7 @@ public class MyFragment extends Fragment {
     public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
         switch (requestCode) {
             case MY_PERMISSIONS_REQUEST_READ_CONTACTS: {
-                // If request is cancelled, the result arrays are empty.
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    // permission was granted, yay! Do the
-                    // contacts-related task you need to do.
                     Toast toast = Toast.makeText(getActivity(), "權限已取得", Toast.LENGTH_SHORT);
                     toast.show();
                 } else {
@@ -343,7 +319,6 @@ public class MyFragment extends Fragment {
                     // permission denied, boo! Disable the
                     // functionality that depends on this permission.
                 }
-                //return;
                 break;
             }
         }
