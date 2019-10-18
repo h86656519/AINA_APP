@@ -1,12 +1,9 @@
 package com.example.user.aina_app.common;
 
 import android.Manifest;
-import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -14,6 +11,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
@@ -29,46 +27,57 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
-import com.example.user.aina_app.BuildConfig;
 import com.example.user.aina_app.R;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
+
+import pub.devrel.easypermissions.AfterPermissionGranted;
+import pub.devrel.easypermissions.AppSettingsDialog;
+import pub.devrel.easypermissions.EasyPermissions;
 
 import static android.app.Activity.RESULT_OK;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MyFragment extends Fragment {
+public class MyFragment extends Fragment implements EasyPermissions.PermissionCallbacks {
     private final String TAG = "MyFragment";
     private View view;
     private String[] items = new String[]{"從圖庫中選擇", "拍照"};
     private ImageView userpic;
-    // CustomRoundAngleImageView userpic;
     private static final int IMAGE_REQUEST_CODE = 0x000;
     private static final int CAMERA_REQUEST_CODE = 0x001;
-    private static final int CODE_RESULT_REQUEST = 0xa2;
+    private static final int CODE_RESULT_REQUEST = 123;
     private static final int MY_PERMISSIONS_REQUEST_READ_CONTACTS = 100;
     private Uri mUri, mCutUri;
-    private File path;
+    //    private File path;
+    private File ainaFile;
     private Uri imageUri;
     private Uri cropImageUri;
     private String folderName = "AINA_APP";  //文件夹名称
-    private File fileUri = new File(Environment.getExternalStorageDirectory().getPath() + "/" + folderName + "/" + "photo.jpg"); //拍照的原圖
-    private File fileCropUri = new File(Environment.getExternalStorageDirectory().getPath() + "/" + folderName + "/" + "crop_photo.jpg"); //相機裁修過後的圖片
+    private File fileUri = new File(Environment.getExternalStorageDirectory() + "/" + folderName + "/" + "photo.jpg"); //拍照的原圖
+    private File fileCropUri = new File(Environment.getExternalStorageDirectory() + "/" + folderName + "/" + "crop_photo.jpg"); //相機裁修過後的圖片
 
-    public MyFragment() {
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_my, container, false);
-        initView();
+        checkPermissions();
         initPath();
+        initView();
 
         return view;
+    }
+
+    private void checkPermissions() {
+        String[] perms = {Manifest.permission.WRITE_EXTERNAL_STORAGE,};
+        if (!EasyPermissions.hasPermissions(getActivity(), perms)) {
+            EasyPermissions.requestPermissions(getActivity(), "需要存取您的權限", 100, perms);
+        }
+
     }
 
     public static MyFragment newInstance() {
@@ -90,8 +99,8 @@ public class MyFragment extends Fragment {
         userpic = view.findViewById(R.id.userpic_imageview);
         //大頭照預設判斷，有裁過就用裁過的圖
         if (fileCropUri.exists()) {
-         //   String s = Environment.getDataDirectory().getPath() + "/" + folderName + "/" + "crop_photo.jpg";
-            String s = Environment.getExternalStorageDirectory().getPath() + "/" + folderName + "/" + "crop_photo.jpg";
+            //   String s = Environment.getDataDirectory().getPath() + "/" + folderName + "/" + "crop_photo.jpg";
+            String s = Environment.getExternalStorageDirectory() + "/" + folderName + "/" + "crop_photo.jpg";
             Bitmap bitmap = BitmapFactory.decodeFile(s);
             userpic.setImageBitmap(bitmap);
         } else {
@@ -111,32 +120,12 @@ public class MyFragment extends Fragment {
                                 openPic(IMAGE_REQUEST_CODE); //啟動相簿
                                 break;
                             case 1:
-                                if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-//                                    Log.i(TAG, "沒有權限了 ");
-                                    ActivityCompat.requestPermissions(getActivity(),
-                                            new String[]{Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE},
-                                            MY_PERMISSIONS_REQUEST_READ_CONTACTS
-                                    );
-                                } else {
-//                                    Log.i(TAG, "已經有權限了 ");
-                                    imageUri = Uri.fromFile(fileUri); //原圖
-                                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                                        //通过FileProvider创建一个content类型的Uri
-                                        imageUri = FileProvider.getUriForFile(getActivity(), getContext().getPackageName() + ".fileprovider", fileUri);
-                                        takePicture(imageUri, CAMERA_REQUEST_CODE);  //啟動相機
-                                    }
-                                }
+                                checkPermissionAndOpen();
+
                                 break;
                         }
                     }
                 }).show();
-//                .setNegativeButton("取消", new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialog, int which) {
-//                        dialog.dismiss();
-//                    }
-//                }).show();
-
     }
 
     public static boolean hasSdcard() {
@@ -152,14 +141,6 @@ public class MyFragment extends Fragment {
         public void onClick(View v) {
             switch (v.getId()) {
                 case R.id.userpic_imageview:
-//                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-//                        if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
-//                            if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
-//                                mIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-//                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-//                                }
-//                            }
-//                        }
                     showDialog();
                     break;
             }
@@ -169,12 +150,13 @@ public class MyFragment extends Fragment {
 
     //建存放的資料夾
     private void initPath() {
-        path = new File(Environment.getExternalStorageDirectory().getPath() + "/" + folderName + "/");
+        ainaFile = new File(Environment.getExternalStorageDirectory() + "/" + folderName);
         //  Environment.getExternalStorageDirectory() 抓的是 SD卡的位置
-        if (!path.exists()) {
-
-            path.mkdirs();
+        if (!ainaFile.exists()) {
+            ainaFile.mkdirs();
         }
+
+//        Log.i(TAG, "path.mkdirs() : " + ainaFile.mkdirs());
     }
 
     @Override
@@ -213,7 +195,7 @@ public class MyFragment extends Fragment {
             //直接裁剪
             Intent intent = new Intent("com.android.camera.action.CROP");
             //设置裁剪之后的图片路径文件
-            File cutfile = new File(path, "crop_photo.jpg"); //1.建立目錄物件，路徑，檔名 2.用同檔名直接硬蓋過去
+            File cutfile = new File(ainaFile, "crop_photo.jpg"); //1.建立目錄物件，路徑，檔名 2.用同檔名直接硬蓋過去
             // File cutfile = new File(path, System.currentTimeMillis() + ".png"); //建立目錄物件，路徑，檔名
 //            if (cutfile.exists()) { //如果已经存在，则先删除,这里应该是上传到服务器，然后再删除本地的，没服务器，只能这样了
 //                //cutfile.delete();
@@ -222,10 +204,8 @@ public class MyFragment extends Fragment {
             //初始化 uri
             Uri imageUri = uri; //返回来的 uri
             Uri outputUri = null; //真实的 uri
-            Log.d(TAG, "CutForPhoto: " + cutfile);
             outputUri = Uri.fromFile(cutfile); //裁過後的圖
             mCutUri = outputUri;
-            Log.d(TAG, "mCameraUri: " + mCutUri);
             // crop为true是设置在开启的intent中设置显示的view可以剪裁
             intent.putExtra("crop", true);   //發送裁剪信息
             // aspectX,aspectY 是宽高的比例，这里设置正方形
@@ -259,8 +239,16 @@ public class MyFragment extends Fragment {
         startActivityForResult(photoPickerIntent, requestCode);
     }
 
+    private boolean hasCameraPermission() {
+        return EasyPermissions.hasPermissions(getActivity(), Manifest.permission.CAMERA);
+    }
 
-    public void takePicture(Uri imageUri, int requestCode) {
+    private void openCamera() {
+        // Have permission, do the thing!
+        Toast.makeText(getActivity(), "TODO: CAMERA things", Toast.LENGTH_LONG).show();
+        //通过FileProvider创建一个content类型的Uri
+        imageUri = FileProvider.getUriForFile(getActivity(), getContext().getPackageName() + ".fileprovider", fileUri);
+
         //调用系统相机
         Intent intentCamera = new Intent();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
@@ -269,7 +257,19 @@ public class MyFragment extends Fragment {
         intentCamera.setAction(MediaStore.ACTION_IMAGE_CAPTURE);
         //将拍照结果保存至photo_file的Uri中，不保留在相册中
         intentCamera.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
-        startActivityForResult(intentCamera, requestCode);
+        startActivityForResult(intentCamera, CAMERA_REQUEST_CODE);
+    }
+    @AfterPermissionGranted(CAMERA_REQUEST_CODE)
+    public void checkPermissionAndOpen() {
+        if (EasyPermissions.hasPermissions(getActivity(), Manifest.permission.CAMERA)) {
+            openCamera();
+        } else {
+            // Request one permission
+            EasyPermissions.requestPermissions(this, "相機權限呢?",
+                    CAMERA_REQUEST_CODE, Manifest.permission.CAMERA);
+        }
+
+
     }
 
     //     * @param orgUri      剪裁原图的Uri
@@ -297,30 +297,28 @@ public class MyFragment extends Fragment {
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
-        switch (requestCode) {
-            case MY_PERMISSIONS_REQUEST_READ_CONTACTS: {
-                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    Toast toast = Toast.makeText(getActivity(), "權限已取得", Toast.LENGTH_SHORT);
-                    toast.show();
-                } else {
-                    //判斷 "不在詢問"
-                    if (ActivityCompat.shouldShowRequestPermissionRationale(getActivity(),
-                            Manifest.permission.CAMERA)) {
-                        //沒按下前
-                        Toast toast = Toast.makeText(getActivity(), "請到設定開啟權限", Toast.LENGTH_SHORT);
-                        toast.show();
-                    } else {
-                        //有按下後
-                        Toast toast = Toast.makeText(getActivity(), "若要使用次功能，請到設定開啟權限2", Toast.LENGTH_SHORT);
-                        toast.show();
-                    }
-                    // finish(); 關掉退出app
-                    // permission denied, boo! Disable the
-                    // functionality that depends on this permission.
-                }
-                break;
-            }
+    public void onRequestPermissionsResult(int requestCode,
+                                           @NonNull String[] permissions,
+                                           @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        // EasyPermissions handles the request result.
+        EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this);
+    }
+
+
+    @Override
+    public void onPermissionsGranted(int requestCode, @NonNull List<String> perms) {
+//        Log.d(TAG, "onPermissionsGranted:" + requestCode + ":" + perms.size());
+        openCamera(); //這邊呼叫是想實現按完允許後就開相機的流程
+    }
+
+    @Override
+    public void onPermissionsDenied(int requestCode, @NonNull List<String> perms) {
+
+        if (EasyPermissions.somePermissionPermanentlyDenied(this, perms)) {
+            new AppSettingsDialog.Builder(this).build().show(); //引導user 去setting 手動打開
         }
+
     }
 }

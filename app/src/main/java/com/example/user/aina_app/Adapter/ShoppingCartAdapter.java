@@ -311,7 +311,7 @@ public class ShoppingCartAdapter extends RecyclerView.Adapter<ShoppingCartAdapte
 //                    if (++quantity < 1) //先加，再判斷
 //                    {
 //                        quantity--;
-////                        Toast.makeText(MainActivity.this, "請輸入一個大於0的數字",
+////                        Toast.makeText(StartActivity.this, "請輸入一個大於0的數字",
 ////                                Toast.LENGTH_SHORT).show();
 //                    } else {
 //                        quantity_list.set(p);
@@ -321,7 +321,7 @@ public class ShoppingCartAdapter extends RecyclerView.Adapter<ShoppingCartAdapte
 //                    if (--quantity < 1) //先減，再判斷
 //                    {
 //                        quantity++;
-////                        Toast.makeText(MainActivity.this, "請輸入一個大於0的數字",
+////                        Toast.makeText(StartActivity.this, "請輸入一個大於0的數字",
 ////                                Toast.LENGTH_SHORT).show();
 //                    } else {
 ////                       etQuantity.setText(quantity_list.get(0));

@@ -157,7 +157,7 @@ public class ProductVerifyActivity extends CustomerNfcBaseActivity {
     }
 
     public void onclick(View view) {
-        Intent intent = new Intent(ProductVerifyActivity.this, MainActivity.class);
+        Intent intent = new Intent(ProductVerifyActivity.this, StartActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }
