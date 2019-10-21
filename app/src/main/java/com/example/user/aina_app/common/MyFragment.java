@@ -75,7 +75,7 @@ public class MyFragment extends Fragment implements EasyPermissions.PermissionCa
     private void checkPermissions() {
         String[] perms = {Manifest.permission.WRITE_EXTERNAL_STORAGE,};
         if (!EasyPermissions.hasPermissions(getActivity(), perms)) {
-            EasyPermissions.requestPermissions(getActivity(), "需要存取您的權限", 100, perms);
+            EasyPermissions.requestPermissions(getActivity(), "沒有讀取權限會讀不到大頭貼喔", 100, perms);
         }
 
     }
