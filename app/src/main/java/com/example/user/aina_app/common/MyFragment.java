@@ -306,16 +306,13 @@ public class MyFragment extends Fragment implements EasyPermissions.PermissionCa
         EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this);
     }
 
-
     @Override
     public void onPermissionsGranted(int requestCode, @NonNull List<String> perms) {
-//        Log.d(TAG, "onPermissionsGranted:" + requestCode + ":" + perms.size());
         openCamera(); //這邊呼叫是想實現按完允許後就開相機的流程
     }
 
     @Override
     public void onPermissionsDenied(int requestCode, @NonNull List<String> perms) {
-
         if (EasyPermissions.somePermissionPermanentlyDenied(this, perms)) {
             new AppSettingsDialog.Builder(this).build().show(); //引導user 去setting 手動打開
         }
