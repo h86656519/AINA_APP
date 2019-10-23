@@ -47,30 +47,23 @@ public abstract class QuMediaBaseActivity2 extends AppCompatActivity implements 
         public void handleMessage(Message msg) {
             Bundle data = msg.getData();
             String messageType = data.getString("HTTP_MESSAGE_TYPE");
-            Log.i("suvini","messageType456 : " + messageType);
             if ("ERROR".equals(messageType)) {
                 if ("9999".equals(data.getString("REPONSE_DATA"))) {
-                    Log.i("suvini","aaa11");
                     if (!QuMediaBaseActivity2.this.doRetryHttpConnectUrl()) {
                         QuMediaBaseActivity2.this.onError(new MobileException(data.getString("REPONSE_DATA"), data.getString("REPONSE_MESSAGE")));
                     }
                 } else {
-                    Log.i("suvini","bbb22");
                     QuMediaBaseActivity2.this.onError(new MobileException(data.getString("REPONSE_DATA"), data.getString("REPONSE_MESSAGE")));
                 }
             } else if ("FINISH".equals(messageType)) {
-                Log.i("suvini","1a");
              //   QuMediaBaseActivity2.this.onProgress(150);
                 QuMediaBaseActivity2.this.onFinish(data.getByteArray("REPONSE_DATA"));
             } else if ("RESULT_STRING_FINISH".equals(messageType)) {
-                Log.i("suvini","2a");
                 QuMediaBaseActivity2.this.onProgress(150);
                 QuMediaBaseActivity2.this.onFinish(data.getString("REPONSE_DATA"));
             } else if ("STRING_FINISH".equals(messageType)) {
-                Log.i("suvini","3a");
                 QuMediaBaseActivity2.this.doHttpCallBack(data.getString("REPONSE_DATA"));
             } else {
-                Log.i("suvini","4a");
                // QuMediaBaseActivity2.this.onProgress(data.getInt("REPONSE_DATA"));
             }
         }
@@ -186,16 +179,13 @@ public abstract class QuMediaBaseActivity2 extends AppCompatActivity implements 
 
         try {
             if (buffer != null) {
-                Log.i("suvini","1b");
                 QuMediaLogger.debug(TAG, "buffer length=" + buffer.length);
                 input = new DataInputStream(new ByteArrayInputStream(buffer));
                 if (this.instance instanceof HttpDataHandler2) {
-                    Log.i("suvini","2b");
                    // ((HttpDataHandler)this.instance).setData(input, this.reponseVO);
                     ((HttpDataHandler2)this.instance).setData(input, this.reponseVO);
                     QuMediaLogger.debug(TAG, "close mProgress");
                 } else {
-                    Log.i("suvini","3b");
                     this.showErrorDialog("[WARNING] Displayable object cannot handle data.");
                 }
 
@@ -204,7 +194,6 @@ public abstract class QuMediaBaseActivity2 extends AppCompatActivity implements 
 
             QuMediaLogger.debug(TAG, "buffer is null");
             if (this.instance instanceof HttpDataHandler2) {
-                Log.i("suvini","4b");
          //       ((HttpDataHandler)this.instance).setData((Object)null, this.reponseVO);
                 ((HttpDataHandler2)this.instance).setData((Object)null, this.reponseVO);
                 return;

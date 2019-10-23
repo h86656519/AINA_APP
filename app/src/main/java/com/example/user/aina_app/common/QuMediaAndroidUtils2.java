@@ -284,7 +284,6 @@ public class QuMediaAndroidUtils2 {
             Bundle bundle = new Bundle();
 
             if (parameterMap != null) {
-                Log.i("suvini","startActivity541223 : " + Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 Iterator i$ = parameterMap.keySet().iterator();
 
                 while(i$.hasNext()) {

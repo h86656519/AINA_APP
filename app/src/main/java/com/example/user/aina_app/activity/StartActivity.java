@@ -23,17 +23,17 @@ public class StartActivity extends QuMediaBaseActivity2  implements EasyPermissi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        String[] perms = {Manifest.permission.CAMERA,
+        String[] perms = {
                 Manifest.permission.WRITE_EXTERNAL_STORAGE,
                 Manifest.permission.READ_EXTERNAL_STORAGE};
         //當所有許可權都滿足的時候，返回true，否則返回false
-//        if (EasyPermissions.hasPermissions(this, perms)) {
+        if (EasyPermissions.hasPermissions(this, perms)) {
 //            Log.i("StartActivity", "有權限");
-//        } else {
+        } else {
 //            Log.i("StartActivity", "沒有權限");
-//            EasyPermissions.requestPermissions(this, "相機權限請求 才可以客製個人頭貼喔",
-//                    MY_PERMISSIONS_REQUEST_READ_CONTACTS, perms);
-//        }
+            EasyPermissions.requestPermissions(this, "有權限才能顯示個人大頭貼喔",
+                    MY_PERMISSIONS_REQUEST_READ_CONTACTS, perms);
+        }
     }
 
     @Override
@@ -50,9 +50,6 @@ public class StartActivity extends QuMediaBaseActivity2  implements EasyPermissi
                 startActivity(intent);
                 break;
             case R.id.vertifyproduct:
-                //  Toast.makeText(StartActivity.this, "功能尚待補齊中", Toast.LENGTH_SHORT).show();
-//                intent = new Intent(StartActivity.this, ProductVerifyActivity.class);
-//                startActivity(intent);
                 QuMediaAndroidUtils2.startActivity(StartActivity.this,
                         ProductVerifyActivity.class,
                         null,
@@ -100,6 +97,7 @@ public class StartActivity extends QuMediaBaseActivity2  implements EasyPermissi
     @Override
     public void onPermissionsGranted(int requestCode, List<String> perms) {
         Log.i("StartActivity", "onPermissionsGranted 有權限");
+
     }
 
 //    用戶授權失敗

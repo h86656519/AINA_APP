@@ -50,6 +50,7 @@ public class MyFragment extends Fragment implements EasyPermissions.PermissionCa
     private static final int IMAGE_REQUEST_CODE = 0x000;
     private static final int CAMERA_REQUEST_CODE = 0x001;
     private static final int CODE_RESULT_REQUEST = 123;
+    private static final int CODE_WRITE_EXTERNAL_STORAGE_REQUEST = 123;
     private static final int MY_PERMISSIONS_REQUEST_READ_CONTACTS = 100;
     private Uri mUri, mCutUri;
     //    private File path;
@@ -65,7 +66,7 @@ public class MyFragment extends Fragment implements EasyPermissions.PermissionCa
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_my, container, false);
-        checkPermissions();
+       // checkPermissions();
         initPath();
         initView();
 
@@ -73,9 +74,16 @@ public class MyFragment extends Fragment implements EasyPermissions.PermissionCa
     }
 
     private void checkPermissions() {
-        String[] perms = {Manifest.permission.WRITE_EXTERNAL_STORAGE,};
-        if (!EasyPermissions.hasPermissions(getActivity(), perms)) {
-            EasyPermissions.requestPermissions(getActivity(), "沒有讀取權限會讀不到大頭貼喔", 100, perms);
+//        String[] perms = {Manifest.permission.WRITE_EXTERNAL_STORAGE,};
+//        if (!EasyPermissions.hasPermissions(getActivity(), perms)) {
+//            EasyPermissions.requestPermissions(getActivity(), "沒有讀取權限會讀不到大頭貼喔", 100, perms);
+//        }
+        if (EasyPermissions.hasPermissions(getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+            initView();
+        } else {
+            // Request one permission
+            EasyPermissions.requestPermissions(this, "沒有讀取權限會讀不到大頭貼喔",
+                    CODE_WRITE_EXTERNAL_STORAGE_REQUEST, Manifest.permission.WRITE_EXTERNAL_STORAGE);
         }
 
     }
@@ -243,9 +251,10 @@ public class MyFragment extends Fragment implements EasyPermissions.PermissionCa
         return EasyPermissions.hasPermissions(getActivity(), Manifest.permission.CAMERA);
     }
 
+    //被@AfterPermissionGranted注解的方法会在请求码中的所有权限申请成功之后 自動 被调用，
+    // 就不用在 onPermissionsGranted 裡寫switch 比對，要二選一，不然會調用二次
+    @AfterPermissionGranted(CAMERA_REQUEST_CODE)
     private void openCamera() {
-        // Have permission, do the thing!
-        Toast.makeText(getActivity(), "TODO: CAMERA things", Toast.LENGTH_LONG).show();
         //通过FileProvider创建一个content类型的Uri
         imageUri = FileProvider.getUriForFile(getActivity(), getContext().getPackageName() + ".fileprovider", fileUri);
 
@@ -259,7 +268,7 @@ public class MyFragment extends Fragment implements EasyPermissions.PermissionCa
         intentCamera.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
         startActivityForResult(intentCamera, CAMERA_REQUEST_CODE);
     }
-    @AfterPermissionGranted(CAMERA_REQUEST_CODE)
+
     public void checkPermissionAndOpen() {
         if (EasyPermissions.hasPermissions(getActivity(), Manifest.permission.CAMERA)) {
             openCamera();
@@ -301,14 +310,22 @@ public class MyFragment extends Fragment implements EasyPermissions.PermissionCa
                                            @NonNull String[] permissions,
                                            @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-
+        Log.i(TAG, "onRequestPermissionsResult requestCode: " + requestCode);
         // EasyPermissions handles the request result.
         EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this);
     }
 
     @Override
     public void onPermissionsGranted(int requestCode, @NonNull List<String> perms) {
-        openCamera(); //這邊呼叫是想實現按完允許後就開相機的流程
+        Log.i(TAG, "onPermissionsGranted requestCode: " + requestCode);
+        switch (requestCode) {
+//            case CAMERA_REQUEST_CODE:
+//                openCamera(); //這邊呼叫是想實現按完允許後就開相機的流程
+//                break;
+            case CODE_WRITE_EXTERNAL_STORAGE_REQUEST:
+                initView(); //刷新頁面才會顯示大頭貼
+                break;
+        }
     }
 
     @Override
@@ -318,4 +335,5 @@ public class MyFragment extends Fragment implements EasyPermissions.PermissionCa
         }
 
     }
+
 }
