@@ -3,9 +3,6 @@ package com.example.user.aina_app.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,11 +11,14 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.example.user.aina_app.Adapter.ProductExpandableListAdapter;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
 import com.example.user.aina_app.Adapter.ProductExpandableListAdapter2;
 import com.example.user.aina_app.Adapter.TabAdaper;
 import com.example.user.aina_app.R;
 import com.example.user.aina_app.layout.InvoiceViewPager;
+import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
 import java.util.HashMap;

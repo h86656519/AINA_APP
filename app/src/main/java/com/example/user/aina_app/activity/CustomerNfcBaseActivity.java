@@ -14,7 +14,7 @@ import android.nfc.tech.NfcB;
 import android.nfc.tech.NfcF;
 import android.nfc.tech.NfcV;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 
 //import com.example.user.aina_app.activity.QuMediaBaseActivity2;
 import com.example.user.aina_app.activity.CustomerBaseActivity;

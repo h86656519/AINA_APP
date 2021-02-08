@@ -1,8 +1,8 @@
 package com.example.user.aina_app.Adapter;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,7 +14,6 @@ import com.example.user.aina_app.R;
 
 import java.util.ArrayList;
 
-import static android.support.constraint.Constraints.TAG;
 
 public class AddressDetailAdapter extends RecyclerView.Adapter<AddressDetailAdapter.ViewHolder> {
     private ArrayList<String> name_list;

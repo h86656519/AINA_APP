@@ -6,10 +6,12 @@ import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 
+import androidx.appcompat.widget.AppCompatImageView;
+
 import com.example.user.aina_app.R;
 //可以设置宽高比例的ImageView
 //專案中沒用到
-public class RatioImageView extends android.support.v7.widget.AppCompatImageView {
+public class RatioImageView extends AppCompatImageView {
 
 /* 优先级从大到小：
      mIsWidthFitDrawableSizeRatio mIsHeightFitDrawableSizeRatio

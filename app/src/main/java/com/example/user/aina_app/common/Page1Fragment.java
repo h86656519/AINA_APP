@@ -1,20 +1,11 @@
 package com.example.user.aina_app.common;
 
-
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v4.app.Fragment;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.SearchView;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
@@ -22,19 +13,17 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.user.aina_app.Adapter.BabyAdapter;
-import com.example.user.aina_app.Adapter.HealthFoodAdapter;
-import com.example.user.aina_app.Adapter.HealthRecommendAdapter;
-import com.example.user.aina_app.Adapter.ManAdapter;
-import com.example.user.aina_app.Adapter.OldManHealthAdapter;
-import com.example.user.aina_app.Adapter.SpecialDiscountAdapter;
+import androidx.appcompat.widget.SearchView;
+import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.user.aina_app.Adapter.TopIconAdapter;
-import com.example.user.aina_app.Adapter.WomanAdapter;
 import com.example.user.aina_app.R;
 import com.example.user.aina_app.activity.ShoppingCartActivity;
 import com.superluo.textbannerlibrary.ITextBannerItemClickListener;
 import com.superluo.textbannerlibrary.TextBannerView;
-import com.takusemba.multisnaprecyclerview.MultiSnapRecyclerView;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.listener.OnBannerListener;
@@ -150,69 +139,69 @@ public class Page1Fragment extends Fragment implements OnBannerListener, View.On
         });
 
 //      超值秒殺
-        SpecialDiscountAdapter specialDiscountAdapter = new SpecialDiscountAdapter(specialproductname);
-        MultiSnapRecyclerView specialDiscountRecyclerView = (MultiSnapRecyclerView) view.findViewById(R.id.specialDiscount_recyclerview);
-        LinearLayoutManager specialDiscountManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
-        specialDiscountRecyclerView.setLayoutManager(specialDiscountManager);
-        specialDiscountRecyclerView.setAdapter(specialDiscountAdapter);
+//        SpecialDiscountAdapter specialDiscountAdapter = new SpecialDiscountAdapter(specialproductname);
+//        MultiSnapRecyclerView specialDiscountRecyclerView = (MultiSnapRecyclerView) view.findViewById(R.id.specialDiscount_recyclerview);
+//        LinearLayoutManager specialDiscountManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
+//        specialDiscountRecyclerView.setLayoutManager(specialDiscountManager);
+//        specialDiscountRecyclerView.setAdapter(specialDiscountAdapter);
 
 //      健康推薦
-        HealthRecommendAdapter healthRecommendAdapter = new HealthRecommendAdapter(healthRecommendImage);
-        MultiSnapRecyclerView healthRecommendRecyclerView = (MultiSnapRecyclerView) view.findViewById(R.id.healthRecommend_recyclerview);
-        LinearLayoutManager healthRecommenManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
-        healthRecommendRecyclerView.setLayoutManager(healthRecommenManager);
-        healthRecommendRecyclerView.setAdapter(healthRecommendAdapter);
+//        HealthRecommendAdapter healthRecommendAdapter = new HealthRecommendAdapter(healthRecommendImage);
+//        MultiSnapRecyclerView healthRecommendRecyclerView = (MultiSnapRecyclerView) view.findViewById(R.id.healthRecommend_recyclerview);
+//        LinearLayoutManager healthRecommenManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
+//        healthRecommendRecyclerView.setLayoutManager(healthRecommenManager);
+//        healthRecommendRecyclerView.setAdapter(healthRecommendAdapter);
 
 //      銀髮族保健
-        OldManHealthAdapter oldManHealthAdapter = new OldManHealthAdapter(specialproductname); //暫時先用specialproductname
-        MultiSnapRecyclerView OldManHealthRecyclerView = (MultiSnapRecyclerView) view.findViewById(R.id.oldManHealth_recyclerview);
-        LinearLayoutManager OldManHealthManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
-        OldManHealthRecyclerView.setLayoutManager(OldManHealthManager);
-        OldManHealthRecyclerView.setAdapter(oldManHealthAdapter);
+//        OldManHealthAdapter oldManHealthAdapter = new OldManHealthAdapter(specialproductname); //暫時先用specialproductname
+//        MultiSnapRecyclerView OldManHealthRecyclerView = (MultiSnapRecyclerView) view.findViewById(R.id.oldManHealth_recyclerview);
+//        LinearLayoutManager OldManHealthManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
+//        OldManHealthRecyclerView.setLayoutManager(OldManHealthManager);
+//        OldManHealthRecyclerView.setAdapter(oldManHealthAdapter);
 
 //      女性護理
-        WomanAdapter womanAdapter = new WomanAdapter(specialproductname); //暫時先用specialproductname
-        MultiSnapRecyclerView WomanRecyclerView = (MultiSnapRecyclerView) view.findViewById(R.id.woman_recyclerview);
-        LinearLayoutManager WomanManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
-        WomanRecyclerView.setLayoutManager(WomanManager);
-        WomanRecyclerView.setAdapter(womanAdapter);
-        WomanRecyclerView.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
-            @Override
-            public boolean onInterceptTouchEvent(@NonNull RecyclerView recyclerView, @NonNull MotionEvent motionEvent) {
-                return false;
-            }
-
-            @Override
-            public void onTouchEvent(@NonNull RecyclerView recyclerView, @NonNull MotionEvent motionEvent) {
-
-            }
-
-            @Override
-            public void onRequestDisallowInterceptTouchEvent(boolean b) {
-
-            }
-        });
+//        WomanAdapter womanAdapter = new WomanAdapter(specialproductname); //暫時先用specialproductname
+//        MultiSnapRecyclerView WomanRecyclerView = (MultiSnapRecyclerView) view.findViewById(R.id.woman_recyclerview);
+//        LinearLayoutManager WomanManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
+//        WomanRecyclerView.setLayoutManager(WomanManager);
+//        WomanRecyclerView.setAdapter(womanAdapter);
+//        WomanRecyclerView.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
+//            @Override
+//            public boolean onInterceptTouchEvent(@NonNull RecyclerView recyclerView, @NonNull MotionEvent motionEvent) {
+//                return false;
+//            }
+//
+//            @Override
+//            public void onTouchEvent(@NonNull RecyclerView recyclerView, @NonNull MotionEvent motionEvent) {
+//
+//            }
+//
+//            @Override
+//            public void onRequestDisallowInterceptTouchEvent(boolean b) {
+//
+//            }
+//        });
 
 //      嬰幼兒保健
-        BabyAdapter babyAdapter = new BabyAdapter(specialproductname); //暫時先用specialproductname
-        MultiSnapRecyclerView babyRecyclerView = (MultiSnapRecyclerView) view.findViewById(R.id.baby_recyclerview);
-        LinearLayoutManager babyManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
-        babyRecyclerView.setLayoutManager(babyManager);
-        babyRecyclerView.setAdapter(babyAdapter);
+//        BabyAdapter babyAdapter = new BabyAdapter(specialproductname); //暫時先用specialproductname
+//        MultiSnapRecyclerView babyRecyclerView = (MultiSnapRecyclerView) view.findViewById(R.id.baby_recyclerview);
+//        LinearLayoutManager babyManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
+//        babyRecyclerView.setLayoutManager(babyManager);
+//        babyRecyclerView.setAdapter(babyAdapter);
 
 //      男性中心
-        ManAdapter manAdapter = new ManAdapter(specialproductname); //暫時先用specialproductname
-        MultiSnapRecyclerView manRecyclerView = (MultiSnapRecyclerView) view.findViewById(R.id.man_recyclerview);
-        LinearLayoutManager manManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
-        manRecyclerView.setLayoutManager(manManager);
-        manRecyclerView.setAdapter(manAdapter);
+//        ManAdapter manAdapter = new ManAdapter(specialproductname); //暫時先用specialproductname
+//        MultiSnapRecyclerView manRecyclerView = (MultiSnapRecyclerView) view.findViewById(R.id.man_recyclerview);
+//        LinearLayoutManager manManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
+//        manRecyclerView.setLayoutManager(manManager);
+//        manRecyclerView.setAdapter(manAdapter);
 
 //      一般保健食品
-        HealthFoodAdapter healthFoodAdapter = new HealthFoodAdapter(specialproductname); //暫時先用specialproductname
-        MultiSnapRecyclerView healthFoodRecyclerView = (MultiSnapRecyclerView) view.findViewById(R.id.healthfood_recyclerview);
-        LinearLayoutManager healthFoodManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
-        healthFoodRecyclerView.setLayoutManager(healthFoodManager);
-        healthFoodRecyclerView.setAdapter(healthFoodAdapter);
+//        HealthFoodAdapter healthFoodAdapter = new HealthFoodAdapter(specialproductname); //暫時先用specialproductname
+//        MultiSnapRecyclerView healthFoodRecyclerView = (MultiSnapRecyclerView) view.findViewById(R.id.healthfood_recyclerview);
+//        LinearLayoutManager healthFoodManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
+//        healthFoodRecyclerView.setLayoutManager(healthFoodManager);
+//        healthFoodRecyclerView.setAdapter(healthFoodAdapter);
 
         customerFab = (MovableFloatingActionButton) view.findViewById(R.id.customer_fab);
         customerFab.setOnTouchListener(new MovableFloatingActionButton(getActivity()));

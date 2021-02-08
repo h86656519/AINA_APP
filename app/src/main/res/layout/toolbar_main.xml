@@ -1,4 +1,4 @@
-<android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/toolbar_main"
     android:layout_width="match_parent"
@@ -22,7 +22,7 @@
             android:scaleType="fitCenter"
             android:src="@drawable/icon_qrcode" />
 
-        <android.support.v7.widget.SearchView
+        <androidx.appcompat.widget.SearchView
             android:id="@+id/searchView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -50,5 +50,5 @@
 
     </LinearLayout>
 
-</android.support.v7.widget.Toolbar>
+</androidx.cardview.widget.CardView>
 

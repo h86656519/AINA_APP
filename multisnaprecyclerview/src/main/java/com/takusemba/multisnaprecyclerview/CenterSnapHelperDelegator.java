@@ -1,9 +1,10 @@
 package com.takusemba.multisnaprecyclerview;
 
-import android.support.v7.widget.OrientationHelper;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.OrientationHelper;
+import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * CenterSnapHelperDelegator
@@ -46,5 +47,20 @@ class CenterSnapHelperDelegator extends SnapHelperDelegator {
         return forwardDirection
                 ? getDistance(layoutManager, targetView, helper) < 0
                 : getDistance(layoutManager, targetView, helper) > 0;
+    }
+
+    @Override
+    int[] calculateDistanceToFinalSnap(@NonNull RecyclerView.LayoutManager layoutManager, @NonNull View targetView) {
+        return new int[0];
+    }
+
+    @Override
+    View findSnapView(RecyclerView.LayoutManager layoutManager) {
+        return null;
+    }
+
+    @Override
+    int findTargetSnapPosition(RecyclerView.LayoutManager layoutManager, int velocityX, int velocityY) {
+        return 0;
     }
 }

@@ -8,21 +8,19 @@ import android.graphics.BitmapShader;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.graphics.Paint;
-import android.graphics.Path;
 import android.graphics.PixelFormat;
 import android.graphics.RectF;
 import android.graphics.Shader;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
-import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.Log;
-import android.view.View;
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatImageView;
 
 import com.example.user.aina_app.R;
 
-public class CustomRoundAngleImageView extends android.support.v7.widget.AppCompatImageView {
+public class CustomRoundAngleImageView extends AppCompatImageView {
     //图片的宽高比
     private float ratio = 0;
 

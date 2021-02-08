@@ -1,8 +1,6 @@
 package com.example.user.aina_app.Adapter;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -14,11 +12,12 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.user.aina_app.R;
 import com.example.user.aina_app.activity.Good;
-import com.example.user.aina_app.activity.ShoppingCartActivity;
 
 import java.util.ArrayList;
 

@@ -1,8 +1,8 @@
 package com.example.user.aina_app.common;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.v7.app.AlertDialog;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 
 public class SelectDialog extends AlertDialog {
 
